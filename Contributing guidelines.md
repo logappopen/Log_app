@@ -39,6 +39,14 @@ Do tego automat, który kontaktuje się z klientem, potwierdza daty odbiorów, d
 - użytkownik po zalogowaniu /lub nie widzi panel wyboru pojazdu/przestrzeni ładunkowej,
 - po dokonaniu wybory widzi panel wyboru ładunku, miejsca i daty, podczas wyboru może cofnać się i zmienić pojazd - dla nie zalogowanych zaczyna od początku, dla zalogowanych program pyta czy zapisać dotychczasowy postępp załadunku
 - każdorazowo po dokonaniu wybory ładunku, miejsca i daty klika "załaduj", jeżeli nie to ten wybór nie bedzei brany pod uwagę przez program
-- po kliknieciu załaduj program dokonuje obliczeń i aktualizuje przestrzeń ładunkowę i routing (trasę) (DO_OMÓWIENIA - czy od razy opcja aktualizacji tasy, będzei pisana)
+- po kliknieciu "załaduj" program dokonuje obliczeń i aktualizuje przestrzeń ładunkowę i routing (trasę) (DO_OMÓWIENIA - czy od razy opcja aktualizacji tasy, będzei pisana)
 
-5. Obliczenia programu
+5. Obliczenia programu (bez aktualizacji trasy)
+
+- na podstawie wprowadzonych lub wybranych danych przez uzytkownika przeliczają się wartości przestrzeni ładunkowej pojazdu: szerokość _ długość _ wysokość
+- dane te ograniczają mozliwość załadunku towaru do wielkosći przestrzeni ładunkowej
+- przykład wymiarów naczepy cieżarowej: 250cm szerokości 1360cm długości 275cm wysikości
+- standardowa i podstawowa jednostka opakowania w logistyce to euro-paleta o wymiatach 120cm _ 80cm _ Xcm(wysokość palety)
+- na środek transportowy o podanych wyżej wymiarach można załadować maksymalnie 33 euro-palety o przykładowej wysokości X=200cm, wynika to z obliczenia że dwie palety obok siebie zajmują 120 \* 2 czyli 240cm (co jest mniejsze odszerokości naczepy wynoszącej 250cm), na długość 80cm. zatem 30 palet to prostokat o długości 1200cm i szerokości 240cm. Pozostaje wolne miejsce o wymiarach długość: 1360cm - 1200cm = 160cm 8 szerokkość 250cm - tu sa ładowane 3 ostatnie palety: 80cm + 80cm + 80cm - co daje 240cm < 250cm na długość 120cm.
+- na podstawie powyższego obliczenia należy zaprogramować dzaiłanie aplikacji w taki sposób, aby w momecie wybrania ładunku i kliknięcia przycisku "załaduj" obliczała ona: 1. ile pozostało wolnego miejsca po ostatnim załadunku wzgledem wybranej przestrzeni ładunklowej, 2. Czy wymiary podanego ładunku zmieszczą się na pozostałą przestrzeń 3. Ile pozostanie wolnej przestrzeni po załadunku.
+- Nie poruszonu tu kwestii pietrowania palet, związanego z ich wysokością - będzie to doprecyzowane.
