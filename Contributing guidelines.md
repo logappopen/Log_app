@@ -17,20 +17,28 @@ Do tego automat, który kontaktuje się z klientem, potwierdza daty odbiorów, d
 
 ## Faza Pierwsza - (Aplikacja do zarządzania przestrzenią ładunkową pojazdów) funkcje biznesowe:
 
-- Panel logowania
+1. Panel logowania
+
 - Możliwość zalogowania do aplikacji - wtedy dane wyboru użytkownika powinny być zapamiętywane przez program. Użytkownik zalogowany powninien mieć mozliwość konfiguracji i zapisu typowych dla siebie parametrów pojazdów.
 - Możliwość korzystania z aplikacji bez logowanie - uzytkownik nie ma mozliwości skonfigurować i zapisać paramertów.
-- Panel wyboru środka transportu
+
+2. Panel wyboru środka transportu
+
 - wybór przestrzeni ładunkowej/środka transportu - tylko możliwość wyboru za pomocą wskazanych przez program opcji z listy (OPCJE*DOSTARCZY*@TM),
 - dane liczbowe: długosć, szerokość, wysokość, łaowność (DANE*DOSTARCZY*@TM),
 - DO_OMÓWIENIA wizualizacja
-- Panel wyboru ładunku i miejsca
+
+3. Panel wyboru ładunku i miejsca
+
 - w tym panelu również widoczny środek transportu (jeżeli będzie wizualizacja) i jego kubatura,
 - npole wyboru środków ładunkowych - z listy na podstawie typowych danych nosników transportowych (DOSTARCZY\_@TM), ale wysokość, waga i ilość określana "z ręki". Dodatkowo mozliwośc wpisania przez użytkownika wszystkich parametrów z ręki
 - pole wpisywania adresu i daty odbiory i dostawy przesyłki (DO_OMÓWIENIA API GOOGLE MAPS)
-- Mechanika aplikacji
+
+4. Mechanika aplikacji
+
 - użytkownik po zalogowaniu /lub nie widzi panel wyboru pojazdu/przestrzeni ładunkowej,
 - po dokonaniu wybory widzi panel wyboru ładunku, miejsca i daty, podczas wyboru może cofnać się i zmienić pojazd - dla nie zalogowanych zaczyna od początku, dla zalogowanych program pyta czy zapisać dotychczasowy postępp załadunku
 - każdorazowo po dokonaniu wybory ładunku, miejsca i daty klika "załaduj", jeżeli nie to ten wybór nie bedzei brany pod uwagę przez program
 - po kliknieciu załaduj program dokonuje obliczeń i aktualizuje przestrzeń ładunkowę i routing (trasę) (DO_OMÓWIENIA - czy od razy opcja aktualizacji tasy, będzei pisana)
-- Obliczenia programu
+
+5. Obliczenia programu
