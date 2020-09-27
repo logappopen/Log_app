@@ -20,7 +20,7 @@ Do tego automat, który kontaktuje się z klientem, potwierdza daty odbiorów, d
 1. Panel logowania
 
 - Możliwość zalogowania do aplikacji - wtedy dane wyboru użytkownika powinny być zapamiętywane przez program. Użytkownik zalogowany powninien mieć mozliwość konfiguracji i zapisu typowych dla siebie parametrów pojazdów.
-- Możliwość korzystania z aplikacji bez logowanie - uzytkownik nie ma mozliwości skonfigurować i zapisać paramertów.
+- Możliwość korzystania z aplikacji bez logowania - uzytkownik nie ma mozliwości skonfigurowania i zapisania paramertów.
 
 2. Panel wyboru środka transportu
 
@@ -31,15 +31,15 @@ Do tego automat, który kontaktuje się z klientem, potwierdza daty odbiorów, d
 3. Panel wyboru ładunku i miejsca
 
 - w tym panelu również widoczny środek transportu (jeżeli będzie wizualizacja) i jego kubatura,
-- npole wyboru środków ładunkowych - z listy na podstawie typowych danych nosników transportowych (DOSTARCZY\_@TM), ale wysokość, waga i ilość określana "z ręki". Dodatkowo mozliwośc wpisania przez użytkownika wszystkich parametrów z ręki
+- pole wyboru środków ładunkowych - z listy na podstawie typowych danych nosników transportowych (DOSTARCZY\_@TM), ale także wysokość, waga i ilość określana "z ręki". Dodatkowo mozliwośc wpisania przez użytkownika wszystkich parametrów "z ręki"
 - pole wpisywania adresu i daty odbiory i dostawy przesyłki (DO_OMÓWIENIA API GOOGLE MAPS)
 
 4. Mechanika aplikacji
 
-- użytkownik po zalogowaniu /lub nie widzi panel wyboru pojazdu/przestrzeni ładunkowej,
+- użytkownik po zalogowaniu (lub nie) widzi panel wyboru pojazdu/przestrzeni ładunkowej,
 - po dokonaniu wybory widzi panel wyboru ładunku, miejsca i daty, podczas wyboru może cofnać się i zmienić pojazd - dla nie zalogowanych zaczyna od początku, dla zalogowanych program pyta czy zapisać dotychczasowy postępp załadunku
 - każdorazowo po dokonaniu wybory ładunku, miejsca i daty klika "załaduj", jeżeli nie to ten wybór nie bedzei brany pod uwagę przez program
-- po kliknieciu "załaduj" program dokonuje obliczeń i aktualizuje przestrzeń ładunkowę i routing (trasę) (DO_OMÓWIENIA - czy od razy opcja aktualizacji tasy, będzei pisana)
+- po kliknieciu "załaduj" program dokonuje obliczeń i aktualizuje przestrzeń ładunkowę i routing (trasę) (DO_OMÓWIENIA - czy od razu opcja aktualizacji trasy, będzie pisana)
 
 5. Obliczenia programu (bez aktualizacji trasy)
 
@@ -47,6 +47,6 @@ Do tego automat, który kontaktuje się z klientem, potwierdza daty odbiorów, d
 - dane te ograniczają mozliwość załadunku towaru do wielkosći przestrzeni ładunkowej
 - przykład wymiarów naczepy cieżarowej: 250cm szerokości 1360cm długości 275cm wysikości
 - standardowa i podstawowa jednostka opakowania w logistyce to euro-paleta o wymiatach 120cm _ 80cm _ Xcm(wysokość palety)
-- na środek transportowy o podanych wyżej wymiarach można załadować maksymalnie 33 euro-palety o przykładowej wysokości X=200cm, wynika to z obliczenia że dwie palety obok siebie zajmują 120 \* 2 czyli 240cm (co jest mniejsze odszerokości naczepy wynoszącej 250cm), na długość 80cm. zatem 30 palet to prostokat o długości 1200cm i szerokości 240cm. Pozostaje wolne miejsce o wymiarach długość: 1360cm - 1200cm = 160cm 8 szerokkość 250cm - tu sa ładowane 3 ostatnie palety: 80cm + 80cm + 80cm - co daje 240cm < 250cm na długość 120cm.
-- na podstawie powyższego obliczenia należy zaprogramować dzaiłanie aplikacji w taki sposób, aby w momecie wybrania ładunku i kliknięcia przycisku "załaduj" obliczała ona: 1. ile pozostało wolnego miejsca po ostatnim załadunku wzgledem wybranej przestrzeni ładunklowej, 2. Czy wymiary podanego ładunku zmieszczą się na pozostałą przestrzeń 3. Ile pozostanie wolnej przestrzeni po załadunku.
-- Nie poruszonu tu kwestii pietrowania palet, związanego z ich wysokością - będzie to doprecyzowane.
+- na środek transportowy o podanych wyżej wymiarach można załadować maksymalnie 33 euro-palety o przykładowej wysokości X=200cm, wynika to z obliczenia że dwie palety obok siebie zajmują 120 \* 2 czyli 240cm (co jest mniejsze od szerokości naczepy wynoszącej 250cm), na długość 80cm. zatem 30 palet to prostokat o długości 1200cm i szerokości 240cm. Pozostaje wolne miejsce o wymiarach długość: 1360cm - 1200cm = 160cm 8 szerokość 250cm - tu sa ładowane 3 ostatnie palety: 80cm + 80cm + 80cm - co daje 240cm < 250cm na długość 120cm.
+- na podstawie powyższego obliczenia należy zaprogramować działanie aplikacji w taki sposób, aby w momecie wybrania ładunku i kliknięcia przycisku "załaduj" obliczała ona: 1. ile pozostało wolnego miejsca po ostatnim załadunku wzgledem wybranej przestrzeni ładunklowej, 2. Czy wymiary podanego ładunku zmieszczą się na pozostałą przestrzeń 3. Ile pozostanie wolnej przestrzeni po załadunku.
+- Nie poruszono tu kwestii piętrowania palet, związanego z ich wysokością - będzie to doprecyzowane.
