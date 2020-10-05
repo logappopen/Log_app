@@ -37,7 +37,7 @@ Do tego automat, który kontaktuje się z klientem, potwierdza daty odbiorów, d
 4. Mechanika aplikacji
 
 -   użytkownik po zalogowaniu (lub nie) widzi panel wyboru pojazdu/przestrzeni ładunkowej,
--   po dokonaniu wybory widzi panel wyboru ładunku, miejsca i daty, podczas wyboru może cofnać się i zmienić pojazd - dla nie zalogowanych zaczyna od początku, dla zalogowanych program pyta czy zapisać dotychczasowy postęp załadunku
+-   po dokonaniu wybory widzi panel wyboru ładunku, miejsca i daty, podczas wyboru może cofnąć się i zmienić pojazd - dla nie zalogowanych zaczyna od początku, dla zalogowanych program pyta czy zapisać dotychczasowy postęp załadunku
 -   każdorazowo po dokonaniu wybory ładunku, miejsca i daty klika "załaduj", jeżeli nie to ten wybór nie będzie brany pod uwagę przez program
 -   po kliknięciu "załaduj" program dokonuje obliczeń i aktualizuje przestrzeń ładunkową i routing (trasę) (DO_OMÓWIENIA - czy od razu opcja aktualizacji trasy, będzie pisana)
 
@@ -50,3 +50,21 @@ Do tego automat, który kontaktuje się z klientem, potwierdza daty odbiorów, d
 -   na środek transportowy o podanych wyżej wymiarach można załadować maksymalnie 33 euro-palety o przykładowej wysokości X=200cm, wynika to z obliczenia że dwie palety obok siebie zajmują 120 \* 2 czyli 240cm (co jest mniejsze od szerokości naczepy wynoszącej 250cm), na długość 80cm. zatem 30 palet to prostokąt o długości 1200cm i szerokości 240cm. Pozostaje wolne miejsce o wymiarach długość: 1360cm - 1200cm = 160cm 8 szerokość 250cm - tu sa ładowane 3 ostatnie palety: 80cm + 80cm + 80cm - co daje 240cm < 250cm na długość 120cm.
 -   na podstawie powyższego obliczenia należy zaprogramować działanie aplikacji w taki sposób, aby w momencie wybrania ładunku i kliknięcia przycisku "załaduj" obliczała ona: 1. ile pozostało wolnego miejsca po ostatnim załadunku względem wybranej przestrzeni ładunkowej 2. Czy wymiary podanego ładunku zmieszczą się na pozostałą przestrzeń 3. Ile pozostanie wolnej przestrzeni po załadunku.
 -   Nie poruszono tu kwestii piętrowania palet, związanego z ich wysokością - będzie to doprecyzowane.
+-   każdorazowe dodanie kolejnego elementu (palet) i kliknięcie "załaduj" powoduje kolejne obliczenia.
+-   brak miejsca: w momencie kiedy użytkownik doda kolejne elementy(palety), a program ustali ze nie ma już miejsca, musi poinformować użytkownika ile miejsca pozostało i co z wybranych elementów jeszcze można załadować
+
+-   Przykład:
+    szerokość przestrzeni ładunkowej pojazdu = 2,5m
+    długość = 10m
+    wysokość = 2,6m
+
+Ładujemy: 1. 5 palet 1,2m szer. 0,8m dł. 2,2m wys. - po przeliczeniu pozostaje nam 7,6m przestrzeni o szerokości 2,5m - gdybyśmy załadowali 6 palet wynik byłby taki sam. To jedno puste miejsce zostaje w pamięci programu i jest wypełnieniem przy kolejnym ładowaniu. 2. do załadowanych 5 palet dorzucamy 3 kolejne 1,2m szer 1m dł 2m wys. - po przeliczeniu pozostaje 6,4m długości (pierwsze puste miejsce zostało zmatchowane i uzupełnione).
+
+-   Piętrowanie palet. To opcja wyboru - zawsze "z ręki", po wprowadzeniu ilości i wymiarów, klient może wybrać opcje piętrowanie - opcja ta dotyczy tylko danych wprowadzony w jednym cyklu, czyli przed kliknięciem załaduj. Program sprawdza czy podana wysokość palety/elementu może być podwojona względem wysokości pojazdu, jeżeli tak dzieli załadowany towar przez 2 z uwzględnieniem modulo. Tzn jeżeli mam parzystą ilość palet/elementów dziel przez 2, jeżeli nieparzysta, dzieli przez dwa i reszta 1.
+
+-   Przykład:
+    szerokość przestrzeni ładunkowej pojazdu = 2,5m
+    długość = 10m
+    wysokość = 2,6m
+
+Ładujemy: 1. 5 palet 1,2m szer. 0,8m dł. 1m wys - klikamy piętrować - program sprawdza czy 2 razy wysokość palet jest mniejsza niż wysokość przestrzeni ładunkowej - po przeliczeniu pozostaje 8,4m wolnej długości (w tym jedno miejsce w pamięci aplikacji do ew. uzupełnienia) 2. dorzucamy 3 kolejne palety 1,2 0,8 2m wys - klikamy piętrować - program informuje że nie da się tej wysokości spiętrować - po przeliczeniu pozostaje 7,6m długości (puste miejsce z pamięci zostało uzupełnione).
