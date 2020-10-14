@@ -1,12 +1,13 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import HomePage from "../pages/HomePage";
+import "../css/style.min.css";
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <h1>TUTAJ BĘDZIE SUPER APKA!!!!</h1>
+      <HomePage />
     </div>
   );
-}
+};
 
 export default App;
