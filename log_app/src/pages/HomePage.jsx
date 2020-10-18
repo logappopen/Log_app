@@ -1,16 +1,19 @@
 import React from "react";
-// import { Route, Switch } from "react-router-dom";
-// import Header from "../lauouts/Header";
-// import LoginPage from "./LoginPage";
-// import RegistrationPage from "./RegistrationPage";
-// import FreeStartPage from "./FreeStartPage";
-// import ErrorPage from "./ErrorPage";
+import { Redirect, Route, Switch } from "react-router-dom";
+import Header from "../layouts/Header";
+import LoginPage from "../pages/LoginPage";
+import RegistrationPage from "../pages/RegistrationPage";
+import FreeStartPage from "../pages/FreeStartPage";
+import ErrorPage from "../pages/ErrorPage";
 
 const HomePage = () => {
   return (
     <>
       <div className="container">
-        <div className="container__header">{/* <Header /> */}</div>
+        <div className="container__header">
+          {" "}
+          <Header />{" "}
+        </div>
         <div className="container__section">
           {/* <Switch>
             <Route path="/" exact component={HomePage} />
