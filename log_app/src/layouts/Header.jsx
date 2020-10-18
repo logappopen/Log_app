@@ -1,29 +1,38 @@
-import React from "react";
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import React, { useState } from "react";
 
+import Component from "../layouts/Component";
 import ContactPage from "../pages/ContactPage";
 import HelpPage from "../pages/HelpPage";
 
 const Header = () => {
+  const [pages, setPages] = useState();
+
+  const sendToPage = (event) => {
+    if (event.target.id === "data-contact") {
+      console.log("kontakt");
+    }
+    if (event.target.id === "data-help") {
+      console.log("help");
+    }
+  };
+
   return (
     <>
-      <Router>
-        <div className="header">
-          <div className="header__logo"></div>
-          <div className="header__info info">
-            <button className="info__contact">
-              {" "}
-              <Link to="/kontakt"></Link>
-              Kontakt
-            </button>
-            <button className="info__helo">
-              {/* <Route path="/help" component={HelpPage} /> */}
-              Pomoc
-            </button>
-            {/* </Switch> */}
-          </div>
+      <div className="header">
+        <div className="header__logo"></div>
+        <div className="header__info info">
+          <button
+            onClick={sendToPage}
+            id="data-contact"
+            className="info__contact"
+          >
+            Kontakt
+          </button>
+          <button onClick={sendToPage} id="data-help" className="info__help">
+            Pomoc
+          </button>
         </div>
-      </Router>
+      </div>
     </>
   );
 };
