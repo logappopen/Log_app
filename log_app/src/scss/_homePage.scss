@@ -8,14 +8,11 @@
   margin: 0 auto;
   &__header {
     flex-basis: 20%;
-    border: 1px solid red;
   }
   &__section {
     flex-basis: 70%;
-    border: 1px solid blue;
   }
   &__footer {
     flex-basis: 10%;
-    border: 1px solid green;
   }
 }

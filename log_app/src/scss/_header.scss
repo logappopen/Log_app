@@ -12,16 +12,43 @@
   &__info {
     flex-basis: 40%;
   }
+  @media (orientation: landscape) and (min-width: 1024px) {
+    &__logo {
+      flex-basis: 20%;
+      align-items: center;
+      height: 200px;
+      background-image: url(../images/pallets_1920.jpg);
+    }
+    &__info {
+      flex-basis: 60%;
+    }
+  }
 }
 .info {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   button {
-    flex-basis: 30%;
     background-color: $basic-color;
     color: $text-first-color;
     font-size: $s-font-size;
+    height: 30px;
     border: none;
+    cursor: pointer;
+    transition: 0.4s;
+  }
+  button:hover {
+    background-color: $third-color;
+    color: $text-second-color;
+  }
+  @media (orientation: landscape) and (min-width: 1024px) {
+    flex-direction: row;
+
+    button {
+      flex-basis: 20%;
+      height: 50px;
+      margin-top: 50px;
+      font-size: $x-font-size;
+    }
   }
 }
