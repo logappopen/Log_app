@@ -1,7 +1,11 @@
 import React from "react";
 
 const HelpPage = (props) => {
-  return <div>Pomoc</div>;
+  return (
+    <div className="section-help">
+      <h1>Help_Page</h1>
+    </div>
+  );
 };
 
 export default HelpPage;

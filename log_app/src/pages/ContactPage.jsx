@@ -2,8 +2,8 @@ import React from "react";
 
 const ContactPage = (props) => {
   return (
-    <div>
-      <h1>Kontakt</h1>
+    <div className="section-contact">
+      <h1>Contact_Page</h1>
     </div>
   );
 };
