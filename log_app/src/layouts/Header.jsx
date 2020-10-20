@@ -1,17 +1,26 @@
 import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 
-import Component from "../layouts/Component";
-import ContactPage from "../pages/ContactPage";
-import HelpPage from "../pages/HelpPage";
+const list = [
+  { name: "start", path: "/", exact: true },
+  { name: "kontakt", path: "/contact" },
+  { name: "pomoc", path: "/help" },
+];
 
 const Header = () => {
-  const [pages, setPages] = useState();
-
+  const [pages, setPages] = useState(true);
+  const menu = list.map((item) => (
+    <li key={item.name}>
+      <NavLink to={item.path} exact={item.exact ? item.exact : false}>
+        {item.name}
+      </NavLink>
+    </li>
+  ));
   const sendToPage = (event) => {
-    if (event.target.id === "data-contact") {
+    if (event.target.id === "js-data-contact") {
       console.log("kontakt");
     }
-    if (event.target.id === "data-help") {
+    if (event.target.id === "js-data-help") {
       console.log("help");
     }
   };
@@ -19,19 +28,12 @@ const Header = () => {
   return (
     <>
       <div className="header">
-        <div className="header__logo"></div>
-        <div className="header__info info">
-          <button
-            onClick={sendToPage}
-            id="data-contact"
-            className="info__contact"
-          >
-            Kontakt
-          </button>
-          <button onClick={sendToPage} id="data-help" className="info__help">
-            Pomoc
-          </button>
+        <div className="header__logo">
+          <h1 className="header__title">Aplikacja_name</h1>
         </div>
+        <nav className="header__info info">
+          <ul className="info__menu">{menu}</ul>
+        </nav>
       </div>
     </>
   );
