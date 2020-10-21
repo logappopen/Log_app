@@ -1,13 +1,13 @@
 import React from "react";
-import { useHistory } from "react-router-dom";
+import ReturnButton from "../components/ReturnButton";
 
 const RegistrationPage = () => {
-  const history = useHistory();
-  const handleOnClick = () => history.goBack();
   return (
-    <div>
-      <h1>Rejestracja</h1>
-      <button onClick={handleOnClick}>Powrót do poprzedniej strony</button>
+    <div className="section-registration">
+      <h1>Registration_Page</h1>
+      <div className="section-registration__return-button">
+        <ReturnButton />
+      </div>
     </div>
   );
 };
