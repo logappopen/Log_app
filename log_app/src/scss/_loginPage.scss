@@ -22,6 +22,17 @@
     bottom: -50px;
     right: 0;
   }
+  @media (orientation: landscape) and (min-width: 1024px) {
+    &__nav {
+      ul {
+        margin-top: 60px;
+      }
+    }
+    &__return-button {
+      bottom: -150px;
+      right: 50px;
+    }
+  }
 }
 .login-form {
   display: flex;
