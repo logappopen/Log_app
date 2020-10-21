@@ -1,0 +1,47 @@
+.section-login {
+  width: 95vw;
+  max-height: 100vh;
+  margin: 100px auto;
+  &__form {
+    margin: 0 auto;
+  }
+}
+.login-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 200px;
+  &__label {
+    flex-basis: 30%;
+    margin: 30px 10px 5px 10px;
+  }
+  &__input {
+    flex-basis: 70%;
+    height: 20px;
+    border: 1px solid $basic-color;
+  }
+  &__button {
+    margin: 30px;
+    padding: 10px 20px;
+    border: none;
+    background-color: $third-color;
+    font-size: $m-font-size;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  &__button:hover {
+    background-color: $basic-color;
+    color: $text-first-color;
+  }
+  @media (orientation: landscape) and (min-width: 1024px) {
+    width: 30%;
+    &__label {
+      font-size: $m-font-size;
+    }
+    &__input {
+      height: 30px;
+    }
+  }
+}
