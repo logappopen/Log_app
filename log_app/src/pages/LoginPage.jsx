@@ -1,4 +1,7 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
+
+import ReturnButton from "../components/ReturnButton";
 
 const LoginPage = () => {
   const handleOnPushEmail = () => {
@@ -40,6 +43,14 @@ const LoginPage = () => {
           Logowanie
         </button>
       </form>
+      <nav className="section-login__nav">
+        <ul>
+          <NavLink to="/">Zapomniałem hasła...</NavLink>
+        </ul>
+      </nav>
+      <div className="section-login__return-button">
+        <ReturnButton />
+      </div>
     </div>
   );
 };
