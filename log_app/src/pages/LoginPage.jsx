@@ -45,7 +45,7 @@ const LoginPage = () => {
       </form>
       <nav className="section-login__nav">
         <ul>
-          <NavLink to="/">Zapomniałem hasła...</NavLink>
+          <NavLink to="/lost_password">Zapomniałem hasła...</NavLink>
         </ul>
       </nav>
       <div className="section-login__return-button">
