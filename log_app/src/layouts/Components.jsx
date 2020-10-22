@@ -7,6 +7,7 @@ import HelpPage from "../pages/HelpPage";
 import LoginPage from "../pages/LoginPage";
 import RegistrationPage from "../pages/RegistrationPage";
 import FreeStartPage from "./FreeStartPage";
+import LostPasswordPage from "../pages/LostPasswordPage";
 import ErrorPage from "../pages/ErrorPage";
 
 const Components = (props) => {
@@ -18,6 +19,7 @@ const Components = (props) => {
       <Route path="/login" component={LoginPage} />
       <Route path="/registration" component={RegistrationPage} />
       <Route path="/free_start" component={FreeStartPage} />
+      <Route path="/lost_password" component={LostPasswordPage} />
       <Route path="/empty" component={ErrorPage} />
     </Switch>
   );
