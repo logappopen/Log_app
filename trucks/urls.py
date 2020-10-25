@@ -1,8 +1,8 @@
 from rest_framework import routers
-from .api import TrucksViewSet
+from .api import TruckViewSet
 
 
 router = routers.DefaultRouter()
-router.register('api/trucks', TrucksViewSet, 'trucks')
+router.register('api/truck', TruckViewSet, 'truck')
 
 urlpatterns = router.urls
