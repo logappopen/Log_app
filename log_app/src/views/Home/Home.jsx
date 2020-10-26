@@ -4,6 +4,7 @@ import styles from './Home.module.scss';
 
 import Header from '../../components/Header/Header';
 import Main from '../Main/Main';
+import Footer from '../Footer/Footer';
 
 class HomePage extends Component {
     render() {
@@ -16,7 +17,9 @@ class HomePage extends Component {
                     <div className={styles['container__section']}>
                         {<Main />}
                     </div>
-                    <div className={styles['containe__footer']}></div>
+                    <div className={styles['containe__footer']}>
+                        {<Footer />}
+                    </div>
                 </div>
             </Router>
         );
