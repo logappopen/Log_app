@@ -19,10 +19,7 @@ const LoginPage = () => {
 
     return (
         <div className={styles['section-login']}>
-            <form
-                className={styles[('section-login__form', 'login-form')]}
-                action="submit"
-            >
+            <form className={styles['login-form']} action="submit">
                 <label className={styles['login-form__label']} htmlFor="login">
                     adres eMail
                 </label>
@@ -58,7 +55,7 @@ const LoginPage = () => {
                     <NavLink to="/lost_password">Zapomniałem hasła...</NavLink>
                 </ul>
             </nav>
-            <div className={styles['section-login__return - button']}>
+            <div className={styles['section-login__return-button']}>
                 <ReturnButton />
             </div>
         </div>
