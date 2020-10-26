@@ -1,12 +1,13 @@
 import React from 'react';
+import styles from './FreeStart.module.scss';
 
 import ReturnButton from '../../components/ReturnButton/ReturnButton';
 
 const FreeStartPage = () => {
     return (
-        <div className="section-free-start">
+        <div className={styles['section-free-start']}>
             <h1>Free-Start_Page</h1>
-            <div className="section-free-start__return-button">
+            <div className={styles['section-free-start__return-button']}>
                 <ReturnButton />
             </div>
         </div>

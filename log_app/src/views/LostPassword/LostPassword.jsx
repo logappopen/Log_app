@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ReturnButton from '../../components/ReturnButton/ReturnButton';
+import styles from './LostPassword.module.scss';
 
 const EMAILS = [];
 
@@ -31,26 +32,33 @@ const LostPasswordPage = () => {
     };
 
     return (
-        <div className="section-lost-password">
-            <form className="section-lost-password__form login-form" action="">
-                <label className="login-form__label" htmlFor="login">
+        <div className={styles['section-lost-password']}>
+            <form
+                className={
+                    styles[('section-lost-password__form', 'login-form')]
+                }
+                action=""
+            >
+                <label className={styles['login-form__label']} htmlFor="login">
                     Wpisz adres eMail podany przy rejestarcji konta
                 </label>
                 <input
                     type="email"
                     onChange={handleOnPushEmail}
                     value={emailValue}
-                    className="login-form__input"
+                    className={styles['login-form__input']}
                 />
-                <p className="section-lost-password__info">{vievMessage}</p>
+                <p className={styles['section-lost-password__info']}>
+                    {vievMessage}
+                </p>
                 <button
-                    className="login-form__button"
+                    className={styles['login-form__button']}
                     onClick={handleOnClickLogin}
                 >
                     Wyślij
                 </button>
             </form>
-            <div className="section-lost-password__return-button">
+            <div className={styles['section-lost-password__return-button']}>
                 <ReturnButton />
             </div>
         </div>

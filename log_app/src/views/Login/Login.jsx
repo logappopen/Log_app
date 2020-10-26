@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import styles from './Login.module.scss';
 
 import ReturnButton from '../../components/ReturnButton/ReturnButton';
 
@@ -17,9 +18,12 @@ const LoginPage = () => {
     };
 
     return (
-        <div className="section-login">
-            <form className="section-login__form login-form" action="submit">
-                <label className="login-form__label" htmlFor="login">
+        <div className={styles['section-login']}>
+            <form
+                className={styles[('section-login__form', 'login-form')]}
+                action="submit"
+            >
+                <label className={styles['login-form__label']} htmlFor="login">
                     adres eMail
                 </label>
                 <input
@@ -27,9 +31,12 @@ const LoginPage = () => {
                     name="login"
                     onChange={handleOnPushEmail}
                     value={''}
-                    className="login-form__input"
+                    className={styles['login-form__input']}
                 />
-                <label className="login-form__label" htmlFor="password">
+                <label
+                    className={styles['login-form__label']}
+                    htmlFor="password"
+                >
                     hasło
                 </label>
                 <input
@@ -37,21 +44,21 @@ const LoginPage = () => {
                     name="password"
                     onChange={handleOnPushPassword}
                     value={''}
-                    className="login-form__input"
+                    className={styles['login-form__input']}
                 />
                 <button
-                    className="login-form__button"
+                    className={styles['login-form__button']}
                     onClick={handleOnClickLogin}
                 >
                     Logowanie
                 </button>
             </form>
-            <nav className="section-login__nav">
+            <nav className={styles['section-login__nav']}>
                 <ul>
                     <NavLink to="/lost_password">Zapomniałem hasła...</NavLink>
                 </ul>
             </nav>
-            <div className="section-login__return-button">
+            <div className={styles['section-login__return - button']}>
                 <ReturnButton />
             </div>
         </div>

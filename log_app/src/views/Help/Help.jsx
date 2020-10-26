@@ -1,11 +1,12 @@
-import React from "react";
+import React from 'react';
+import styles from './Help.modules.scss';
 
 const HelpPage = (props) => {
-  return (
-    <div className="section-help">
-      <h1>Help_Page</h1>
-    </div>
-  );
+    return (
+        <div className={styles['section-help']}>
+            <h1>Help_Page</h1>
+        </div>
+    );
 };
 
 export default HelpPage;
