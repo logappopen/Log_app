@@ -6,7 +6,7 @@ import ContactPage from '../../pages/ContactPage';
 import HelpPage from '../../pages/HelpPage';
 import LoginPage from '../../pages/LoginPage';
 import RegistrationPage from '../../pages/RegistrationPage';
-import FreeStartPage from '../../layouts/FreeStartPage';
+import FreeStartPage from '../../pages/FreeStartPage';
 import LostPasswordPage from '../../pages/LostPasswordPage';
 import ErrorPage from '../../pages/ErrorPage';
 
