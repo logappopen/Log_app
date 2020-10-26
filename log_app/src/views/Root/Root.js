@@ -1,9 +1,9 @@
 import React from 'react';
-import HomePage from '../../pages/HomePage';
+import Home from '../Home/Home';
 import './index.scss';
 
 const Root = () => {
-    return <div className="Root">{<HomePage />}</div>;
+    return <div className="Root">{<Home />}</div>;
 };
 
 export default Root;
