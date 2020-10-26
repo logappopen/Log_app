@@ -1,14 +1,14 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import StartPage from '../../pages/StartPage';
-import ContactPage from '../../pages/ContactPage';
-import HelpPage from '../../pages/HelpPage';
-import LoginPage from '../../pages/LoginPage';
-import RegistrationPage from '../../pages/RegistrationPage';
-import FreeStartPage from '../../pages/FreeStartPage';
-import LostPasswordPage from '../../pages/LostPasswordPage';
-import ErrorPage from '../../pages/ErrorPage';
+import StartPage from '../Start/Start';
+import ContactPage from '../Contact/Contact';
+import HelpPage from '../Help/Help';
+import LoginPage from '../Login/Login';
+import RegistrationPage from '../Registration/Registration';
+import FreeStartPage from '../FreeStart/FreeStart';
+import LostPasswordPage from '../LostPassword/LostPassword';
+import ErrorPage from '../Error/Error';
 
 const Main = (props) => {
     return (

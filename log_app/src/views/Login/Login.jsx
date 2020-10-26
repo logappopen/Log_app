@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-import ReturnButton from '../components/ReturnButton/ReturnButton';
+import ReturnButton from '../../components/ReturnButton/ReturnButton';
 
 const LoginPage = () => {
     const handleOnPushEmail = () => {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ReturnButton from '../components/ReturnButton/ReturnButton';
+import ReturnButton from '../../components/ReturnButton/ReturnButton';
 
 const EMAILS = [];
 

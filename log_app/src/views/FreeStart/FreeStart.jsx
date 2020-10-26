@@ -1,6 +1,6 @@
 import React from 'react';
 
-import ReturnButton from '../components/ReturnButton/ReturnButton';
+import ReturnButton from '../../components/ReturnButton/ReturnButton';
 
 const FreeStartPage = () => {
     return (
