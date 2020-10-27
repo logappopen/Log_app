@@ -3,6 +3,9 @@
     position: relative;
     width: 95vw;
     margin: 70px auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
     &__form {
         margin: 0 auto;
     }
