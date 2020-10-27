@@ -5,12 +5,12 @@ import styles from './Login.module.scss';
 import ReturnButton from '../../components/ReturnButton/ReturnButton';
 
 const LoginPage = () => {
-    const handleOnPushEmail = () => {
-        console.log('mail');
+    const handleOnPushEmail = (e) => {
+        console.log(e.target.value);
     };
 
-    const handleOnPushPassword = () => {
-        console.log('log');
+    const handleOnPushPassword = (e) => {
+        console.log(e.target.value);
     };
 
     const handleOnClickLogin = () => {
@@ -27,7 +27,6 @@ const LoginPage = () => {
                     type="email"
                     name="login"
                     onChange={handleOnPushEmail}
-                    value={''}
                     className={styles['login-form__input']}
                 />
                 <label
@@ -40,7 +39,6 @@ const LoginPage = () => {
                     type="password"
                     name="password"
                     onChange={handleOnPushPassword}
-                    value={''}
                     className={styles['login-form__input']}
                 />
                 <button
