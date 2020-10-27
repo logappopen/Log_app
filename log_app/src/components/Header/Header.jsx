@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './Header.module.scss';
 
@@ -9,7 +10,7 @@ const list = [
 ];
 
 const Header = () => {
-    const [pages, setPages] = useState(true);
+    // const [pages, setPages] = useState(true);
     const menu = list.map((item) => (
         <li key={item.name}>
             <NavLink to={item.path} exact={item.exact ? item.exact : false}>
@@ -17,14 +18,14 @@ const Header = () => {
             </NavLink>
         </li>
     ));
-    const sendToPage = (event) => {
-        if (event.target.id === 'js-data-contact') {
-            console.log('kontakt');
-        }
-        if (event.target.id === 'js-data-help') {
-            console.log('help');
-        }
-    };
+    // const sendToPage = (event) => {
+    //     if (event.target.id === 'js-data-contact') {
+    //         console.log('kontakt');
+    //     }
+    //     if (event.target.id === 'js-data-help') {
+    //         console.log('help');
+    //     }
+    // };
 
     return (
         <>
