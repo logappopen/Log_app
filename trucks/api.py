@@ -1,12 +1,12 @@
-from trucks.models import Trucks
+from trucks.models import Truck
 from rest_framework import viewsets, permissions
-from .serializers import TrucksSerializer
+from .serializers import TruckSerializer
 
 
 # Lead Viewset
-class TrucksViewSet(viewsets.ModelViewSet):
-    queryset = Trucks.objects.all()
+class TruckViewSet(viewsets.ModelViewSet):
+    queryset = Truck.objects.all()
     permission_classes = [
         permissions.AllowAny
     ]
-    serializer_class = TrucksSerializer
+    serializer_class = TruckSerializer
