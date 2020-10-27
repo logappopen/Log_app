@@ -1,0 +1,44 @@
+@import '../Root/common.scss';
+.section-start {
+    margin: 50px auto;
+    &__nav {
+        width: 200px;
+        height: 200px;
+        margin: 0 auto;
+    }
+}
+.start-nav {
+    &__menu {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        li a {
+            display: block;
+            width: 140px;
+            height: 40px;
+            margin: 10px;
+            border: 1px solid $basic-color;
+            text-decoration: none;
+            text-transform: uppercase;
+            text-align: center;
+            color: $text-second-color;
+            line-height: 40px;
+            transition: 0.3s;
+        }
+        li a:hover {
+            background-color: $basic-color;
+            color: $text-first-color;
+        }
+        @media (orientation: landscape) and (min-width: 1024px) {
+            li a {
+                width: 160px;
+                height: 50px;
+                margin: 20px;
+                line-height: 50px;
+                font-size: $l-font-size;
+            }
+        }
+    }
+}

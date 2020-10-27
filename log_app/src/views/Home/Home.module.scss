@@ -1,0 +1,19 @@
+@import '../Root/common.scss';
+.container {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    flex-grow: 1;
+    width: 100vw;
+    height: 100vh;
+    margin: 0 auto;
+    &__header {
+        flex-basis: 20%;
+    }
+    &__section {
+        flex-basis: 60%;
+    }
+    &__footer {
+        flex-basis: 10%;
+    }
+}

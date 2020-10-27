@@ -1,0 +1,18 @@
+@import '../Root/common.scss';
+.section-free-start {
+    position: relative;
+    width: 95vw;
+    margin: 30px auto;
+    text-align: center;
+    &__return-button {
+        position: absolute;
+        bottom: -50px;
+        right: 0;
+    }
+    @media (orientation: landscape) and (min-width: 1024px) {
+        &__return-button {
+            bottom: -150px;
+            right: 50px;
+        }
+    }
+}
