@@ -51,21 +51,29 @@
     }
     &__input {
         flex-basis: 70%;
-        height: 20px;
-        border: 1px solid $basic-color;
+        height: 50px;
+        line-height: 1.3em;
+        background: transparent;
+        margin: 0 1.5em;
+        color: $text-first-color;
+        padding: 20px;
+        // border: 1px solid $basic-color;
+        @include neustyle($basic-color, false, topcenter, true);
     }
     &__button {
         margin: 30px;
         padding: 10px 20px;
         border: none;
         background-color: $basic-color;
-        color: $text-first-color;
+        // color: $text-first-color;
+        @include neustyle($basic-color);
         font-size: $m-font-size;
         cursor: pointer;
         transition: 0.3s;
     }
     &__button:hover {
-        background-color: $third-color;
+        // background-color: $third-color;
+        @include neustyle($basic-color, false, topcenter, true);
         color: $text-second-color;
     }
     @media (orientation: landscape) and (min-width: 1024px) {
@@ -74,7 +82,7 @@
             font-size: $m-font-size;
         }
         &__input {
-            height: 30px;
+            height: 50px;
         }
     }
 }
