@@ -1,0 +1,80 @@
+@import '../Root/common.scss';
+.section-login {
+    position: relative;
+    width: 95vw;
+    margin: 70px auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    &__form {
+        margin: 0 auto;
+    }
+    &__nav {
+        ul {
+            margin-top: 30px;
+            list-style: none;
+            text-align: center;
+            a {
+                text-decoration: none;
+                color: $text-second-color;
+                cursor: pointer;
+            }
+        }
+    }
+    &__return-button {
+        position: absolute;
+        bottom: -50px;
+        right: 0;
+    }
+    @media (orientation: landscape) and (min-width: 1024px) {
+        &__nav {
+            ul {
+                margin-top: 60px;
+            }
+        }
+        &__return-button {
+            bottom: -150px;
+            right: 50px;
+        }
+    }
+}
+.login-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 200px;
+    &__label {
+        flex-basis: 30%;
+        margin: 30px 10px 5px 10px;
+    }
+    &__input {
+        flex-basis: 70%;
+        height: 20px;
+        border: 1px solid $basic-color;
+    }
+    &__button {
+        margin: 30px;
+        padding: 10px 20px;
+        border: none;
+        background-color: $basic-color;
+        color: $text-first-color;
+        font-size: $m-font-size;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    &__button:hover {
+        background-color: $third-color;
+        color: $text-second-color;
+    }
+    @media (orientation: landscape) and (min-width: 1024px) {
+        width: 30%;
+        &__label {
+            font-size: $m-font-size;
+        }
+        &__input {
+            height: 30px;
+        }
+    }
+}

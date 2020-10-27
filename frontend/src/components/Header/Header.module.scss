@@ -1,0 +1,82 @@
+@import '../../views/Root/common.scss';
+.header {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding: 10px;
+    &__logo {
+        flex-basis: 50%;
+        height: 100px;
+        background-image: url(../../assets/images/pallets_640.jpg);
+        background-size: cover;
+    }
+    &__title {
+        margin: 10px;
+        text-align: center;
+        font-size: $m-font-size * 1.2;
+        color: $text-first-color;
+    }
+    &__info {
+        flex-basis: 40%;
+    }
+    @media (orientation: landscape) and (min-width: 1024px) {
+        &__logo {
+            flex-basis: 20%;
+            align-items: center;
+            height: 200px;
+            background-image: url(../../assets/images/pallets_1920.jpg);
+        }
+        &__title {
+            margin: 20px;
+            font-size: $x-font-size * 1.8;
+        }
+        &__info {
+            flex-basis: 60%;
+        }
+    }
+}
+.info {
+    &__menu {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        list-style: none;
+        li {
+            margin-bottom: 5px;
+            width: 100px;
+            height: 30px;
+        }
+        li a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            background-color: $basic-color;
+            color: $text-first-color;
+            font-size: $s-font-size;
+            text-transform: uppercase;
+            text-decoration: none;
+            text-align: center;
+            line-height: 30px;
+            cursor: pointer;
+            transition: 0.4s;
+        }
+        li a:hover {
+            background-color: $third-color;
+            color: $text-second-color;
+        }
+    }
+    @media (orientation: landscape) and (min-width: 1024px) {
+        &__menu {
+            flex-direction: row;
+            margin-top: 50px;
+            li {
+                width: 200px;
+                height: 50px;
+            }
+            li a {
+                font-size: $x-font-size;
+                line-height: 50px;
+            }
+        }
+    }
+}
