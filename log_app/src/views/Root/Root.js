@@ -1,4 +1,6 @@
 import React from 'react';
+
+import 'normalize.css';
 import Home from '../Home/Home';
 
 const Root = () => {
