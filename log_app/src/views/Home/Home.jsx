@@ -6,7 +6,7 @@ import Header from '../../components/Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
 
-class HomePage extends Component {
+class Home extends Component {
     render() {
         return (
             <Router>
@@ -26,4 +26,4 @@ class HomePage extends Component {
     }
 }
 
-export default HomePage;
+export default Home;
