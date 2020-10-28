@@ -16,7 +16,7 @@
             text-align: center;
             a {
                 text-decoration: none;
-                color: $text-second-color;
+                color: $text-first-color;
                 cursor: pointer;
             }
         }
@@ -64,6 +64,7 @@
         margin: 20px 0;
         padding: 10px 20px;
         border: none;
+        color: $text-first-color;
         background-color: $basic-color;
         @include neustyle();
         font-size: $m-font-size;
