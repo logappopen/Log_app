@@ -43,11 +43,9 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    width: 100%;
     &__label {
         flex-basis: 30%;
         margin: 10px 1em;
-        width: 90vh;
         align-self: flex-start;
     }
     &__input {
