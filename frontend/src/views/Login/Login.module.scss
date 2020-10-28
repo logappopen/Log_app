@@ -66,7 +66,7 @@
         border: none;
         background-color: $basic-color;
         // color: $text-first-color;
-        @include neustyle($basic-color);
+        @include neustyle();
         font-size: $m-font-size;
         cursor: pointer;
         transition: 0.3s;

@@ -1,22 +1,24 @@
-@mixin neumorphizm-normal {
-    border-radius: 23px;
-    background: #1b83de;
-    box-shadow: 5px 5px 10px #1566ad, -5px -5px 10px #21a0ff;
-}
-@mixin neumorphizm-inset {
-    border-radius: 23px;
-    background: #1b83de;
-    box-shadow: inset 5px 5px 10px #1566ad, inset -5px -5px 10px #21a0ff;
-}
+// @mixin neumorphizm-normal {
+//     border-radius: 23px;
+//     background: #1b83de;
+//     box-shadow: 5px 5px 10px #1566ad, -5px -5px 10px #21a0ff;
+// }
+// @mixin neumorphizm-inset {
+//     border-radius: 23px;
+//     background: #1b83de;
+//     box-shadow: inset 5px 5px 10px #1566ad, inset -5px -5px 10px #21a0ff;
+// }
 
 @mixin neustyle(
-    $color,
+    $color: $basic-color,
     $hover: false,
     $direction: topleft,
     $inset: false,
     $distance: 2px
 ) {
-    border-radius: 23px;
+    border-radius: 20px;
+    border: none;
+    outline: none;
     $v: 2px;
 
     @if $distance {
