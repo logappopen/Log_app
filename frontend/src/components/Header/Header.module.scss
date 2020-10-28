@@ -42,7 +42,8 @@
         justify-content: space-around;
         list-style: none;
         li {
-            margin-bottom: 5px;
+            margin-bottom: 12px;
+            margin-left: 20px;
             width: 100px;
             height: 30px;
         }
@@ -57,11 +58,13 @@
             text-decoration: none;
             text-align: center;
             line-height: 30px;
+            @include neustyle($basic-color, true);
             cursor: pointer;
             transition: 0.4s;
         }
         li a:hover {
-            background-color: $third-color;
+            // background-color: $third-color;
+            @include neustyle($basic-color, false, topcenter, true);
             color: $text-second-color;
         }
     }

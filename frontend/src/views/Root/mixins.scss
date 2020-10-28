@@ -1,0 +1,66 @@
+// @mixin neumorphizm-normal {
+//     border-radius: 23px;
+//     background: #1b83de;
+//     box-shadow: 5px 5px 10px #1566ad, -5px -5px 10px #21a0ff;
+// }
+// @mixin neumorphizm-inset {
+//     border-radius: 23px;
+//     background: #1b83de;
+//     box-shadow: inset 5px 5px 10px #1566ad, inset -5px -5px 10px #21a0ff;
+// }
+
+@mixin neustyle(
+    $color: $basic-color,
+    $hover: false,
+    $direction: topleft,
+    $inset: false,
+    $distance: 2px
+) {
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    $v: 2px;
+
+    @if $distance {
+        $v: $distance;
+    }
+
+    $topX: ($v * 2 * -1);
+    $topY: ($v * 2 * -1);
+
+    @if $direction == 'topcenter' {
+        $topX: 0px;
+        $topY: ($v * 2 * -1);
+    }
+    @if $direction == 'topright' {
+        $topX: ($v * 2);
+        $topY: ($v * 2 * -1);
+    }
+
+    $out: $topX $topY ($v * 3) lighten($color, 12),
+        $topX * -1 $topY * -1 ($v * 3) darken($color, 12),
+        inset $topX $topY ($v * 6) lighten($color, 0),
+        inset $topX * -1 $topY * -1 ($v * 6) darken($color, 0);
+
+    $in: $topX $topY ($v * 5) lighten($color, 0),
+        $topX * -1 $topY * -1 ($v * 3) darken($color, 0),
+        inset $topX $topY ($v * 6) lighten($color, 12),
+        inset $topX/2 $topY/2 ($v) lighten($color, 12),
+        inset $topX * -1 $topY * -1 ($v * 3) darken($color, 10);
+
+    @if $inset {
+        box-shadow: $in;
+    } @else {
+        box-shadow: $out;
+    }
+
+    @if $hover {
+        &:hover {
+            @if $inset {
+                box-shadow: $out;
+            } @else {
+                box-shadow: $in;
+            }
+        }
+    }
+}

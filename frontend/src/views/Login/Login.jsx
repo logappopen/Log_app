@@ -28,7 +28,7 @@ const LoginPage = () => {
         <div className={styles['section-login']}>
             <form className={styles['login-form']} action="submit">
                 <label className={styles['login-form__label']} htmlFor="login">
-                    adres eMail
+                    Adres email
                 </label>
                 <input
                     type="email"
@@ -40,7 +40,7 @@ const LoginPage = () => {
                     className={styles['login-form__label']}
                     htmlFor="password"
                 >
-                    hasło
+                    Hasło
                 </label>
                 <input
                     type="password"
