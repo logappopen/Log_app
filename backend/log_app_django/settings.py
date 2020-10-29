@@ -11,6 +11,10 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+from os import getenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,6 +31,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'accounts.EmailUser'
 
 # Application definition
 
@@ -142,3 +147,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+DEFAULT_FROM_EMAIL = getenv('EMAIL_HOST_USER')
+SERVER_EMAIL = getenv('EMAIL_HOST_USER')
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_USE_TLS = True
+EMAIL_USE_SSL = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = getenv('EMAIL_HOST_USER')
+# EMAIL_HOST_USER = 'testmail@gmail.com'
+EMAIL_HOST_PASSWORD = getenv('EMAIL_HOST_PASSWORD')
+# EMAIL_HOST_PASSWORD = 'TestoweHaslo##'
+
