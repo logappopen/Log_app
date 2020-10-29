@@ -20,7 +20,8 @@ const LoginPage = () => {
 
     const handleOnPushPassword = (e) => {};
 
-    const handleOnClickLogin = () => {
+    const handleOnClickLogin = (e) => {
+        e.preventDefault();
         console.log('klik');
     };
 
