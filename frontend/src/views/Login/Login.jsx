@@ -28,6 +28,17 @@ class LoginPage extends React.Component {
             }
             this.setState({ email: e.target.value });
         };
+        const sendCredentials = () => {
+            return axios
+                .post(process.env.REACT_APP_API_URL + 'api/auth/login', {
+                    username: this.state.email,
+                    password: this.state.password,
+                })
+                .then(function (response) {
+                    // handle success
+                    console.log(response);
+                });
+        };
 
         const handleOnPushPassword = (e) => {
             this.setState({ password: e.target.value });
@@ -38,6 +49,7 @@ class LoginPage extends React.Component {
 
             if (this.state.isValidEmail) {
                 console.log('Wpisano poprawny email');
+                sendCredentials();
             } else {
                 console.log('Wpisano błędny email');
             }
