@@ -30,7 +30,7 @@ class LoginPage extends React.Component {
         };
         const sendCredentials = () => {
             return axios
-                .post(process.env.REACT_APP_API_URL + 'api/auth/login', {
+                .post(process.env.REACT_APP_API_LOGIN_URL, {
                     username: this.state.email,
                     password: this.state.password,
                 })
