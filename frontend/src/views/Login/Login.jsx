@@ -35,8 +35,10 @@ class LoginPage extends React.Component {
                     password: this.state.password,
                 })
                 .then(function (response) {
-                    // handle success
                     console.log(response);
+                })
+                .catch(function (error) {
+                    console.log(error);
                 });
         };
 
