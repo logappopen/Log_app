@@ -45,9 +45,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework',
+    'corsheaders',
     'accounts',
     'trucks',
     'knox',
+
 ]
 
 REST_FRAMEWORK = {
@@ -61,6 +63,8 @@ REST_FRAMEWORK = {
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -156,7 +160,6 @@ EMAIL_USE_SSL = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 465
 EMAIL_HOST_USER = getenv('EMAIL_HOST_USER')
-# EMAIL_HOST_USER = 'testmail@gmail.com'
 EMAIL_HOST_PASSWORD = getenv('EMAIL_HOST_PASSWORD')
-# EMAIL_HOST_PASSWORD = 'TestoweHaslo##'
 
+CORS_ALLOW_ALL_ORIGINS = True
