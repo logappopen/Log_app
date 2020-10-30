@@ -1,17 +1,8 @@
 @import '../../views/Root/common.scss';
 .returnButton {
-    margin: 0 8px;
-    padding: 10px 20px;
-    border: none;
+    @include button($first-color);
     background-color: $first-color;
-    color: $text-first-color;
-    @include neustyle($first-color);
-    font-weight: 700;
-    cursor: pointer;
-    transition: 0.3s;
-
     &:hover {
-        @include neustyle($first-color, $inset: true);
         color: $text-first-color;
     }
 }

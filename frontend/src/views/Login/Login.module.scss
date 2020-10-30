@@ -49,30 +49,10 @@
         align-self: flex-start;
     }
     &__input {
-        flex-basis: 90%;
-        height: 50px;
-        line-height: 1.3em;
-        background: transparent;
-        margin: 0 1.5em;
-        color: $text-first-color;
-        padding: 12px;
-        @include neustyle($basic-color, false, topcenter, true);
+        @include input;
     }
     &__button {
-        margin: 20px 0;
-        padding: 10px 20px;
-        border: none;
-        color: $text-first-color;
-        background-color: $basic-color;
-        @include neustyle();
-        font-size: $m-font-size;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-    &__button:hover {
-        // background-color: $third-color;
-        @include neustyle($inset: true);
-        color: $text-second-color;
+        @include button;
     }
     @media (orientation: landscape) and (min-width: 1024px) {
         width: 30%;
