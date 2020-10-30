@@ -63,7 +63,7 @@ const LoginPage = () => {
         } else {
             console.log('Wpisano błędny email')
         }
-        console.log(email, password, isValidEmail)
+        // console.log(email, password, isValidEmail)
     }
 
     const isLogged = () => {
