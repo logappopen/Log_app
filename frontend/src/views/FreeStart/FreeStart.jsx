@@ -5,13 +5,18 @@ import ReturnButton from "../../components/ReturnButton/ReturnButton";
 
 const FreeStartPage = () => {
   return (
-    <div className={styles["section-free-start"]}>
+    <div className={styles["freeStart"]}>
       <h1>Free-Start</h1>
       <p>
         To wersja bez logowania, po wyjściu Twoja praca zostanie utracona.
         Zaloguj się aby zapisywać swoją pracę.
       </p>
-      <div className={styles["section-free-start__return-button"]}>
+      <div className={styles["main"]}>
+        <div className={styles["loadDetails"]}></div>
+        <div className={styles["infoDetails"]}></div>
+        <div className={styles["vechicleDetails"]}></div>
+      </div>
+      <div className={styles["returnButton"]}>
         <ReturnButton />
       </div>
     </div>
