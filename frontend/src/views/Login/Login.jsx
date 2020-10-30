@@ -1,28 +1,28 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
-import axios from 'axios';
-import styles from './Login.module.scss';
+import React, { useState } from 'react'
+import { NavLink } from 'react-router-dom'
+import axios from 'axios'
+import styles from './Login.module.scss'
 
-import ReturnButton from '../../components/ReturnButton/ReturnButton';
+import ReturnButton from '../../components/ReturnButton/ReturnButton'
 
 const LoginPage = () => {
-    const [email, setEmail] = useState('');
-    const [isValidEmail, setIsValidEmail] = useState(false);
-    const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('')
+    const [isValidEmail, setIsValidEmail] = useState(false)
+    const [password, setPassword] = useState('')
 
     const handleOnPushEmail = (e) => {
         // don't remember from where i copied this code, but this works.
-        let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
         if (re.test(e.target.value)) {
             // this is a valid email address
-            setIsValidEmail(true);
+            setIsValidEmail(true)
         } else {
             // invalid email, maybe show an error to the user.
-            setIsValidEmail(false);
+            setIsValidEmail(false)
         }
-        setEmail(e.target.value);
-    };
+        setEmail(e.target.value)
+    }
     const sendCredentials = () => {
         return axios
             .post(process.env.REACT_APP_API_LOGIN_URL, {
@@ -30,7 +30,7 @@ const LoginPage = () => {
                 password: password,
             })
             .then(function ({ data }) {
-                console.log(data);
+                console.log(data)
                 localStorage.setItem(
                     'LogAppUser',
                     JSON.stringify({
@@ -39,28 +39,28 @@ const LoginPage = () => {
                         email: data.user.email,
                         token: data.token,
                     })
-                );
+                )
             })
             .catch(function (error) {
-                console.log(error);
-            });
-    };
+                console.log(error)
+            })
+    }
 
     const handleOnPushPassword = (e) => {
-        setPassword(e.target.value);
-    };
+        setPassword(e.target.value)
+    }
 
     const handleOnClickLogin = (e) => {
-        e.preventDefault();
+        e.preventDefault()
 
         if (isValidEmail) {
-            console.log('Wpisano poprawny email');
-            sendCredentials();
+            console.log('Wpisano poprawny email')
+            sendCredentials()
         } else {
-            console.log('Wpisano błędny email');
+            console.log('Wpisano błędny email')
         }
-        console.log(email, password, isValidEmail);
-    };
+        console.log(email, password, isValidEmail)
+    }
 
     return (
         <div className={styles['section-login']}>
@@ -78,10 +78,7 @@ const LoginPage = () => {
                          ${!isValidEmail && email ? styles['valid-fail'] : ''}`}
                     />
                 </div>
-                <label
-                    className={styles['login-form__label']}
-                    htmlFor="password"
-                >
+                <label className={styles['login-form__label']} htmlFor="password">
                     Hasło
                 </label>
                 <input
@@ -91,10 +88,7 @@ const LoginPage = () => {
                     onChange={handleOnPushPassword}
                     className={styles['login-form__input']}
                 />
-                <button
-                    className={styles['login-form__button']}
-                    onClick={handleOnClickLogin}
-                >
+                <button className={styles['login-form__button']} onClick={handleOnClickLogin}>
                     Logowanie
                 </button>
             </form>
@@ -107,7 +101,7 @@ const LoginPage = () => {
                 <ReturnButton />
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default LoginPage;
+export default LoginPage

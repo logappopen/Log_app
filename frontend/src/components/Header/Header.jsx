@@ -30,30 +30,19 @@ const Header = () => {
                 <div className={styles.logo}></div>
 
                 <nav className={styles.nav}>
-                    <div
-                        className={styles.hamburger}
-                        onClick={handleHamburgerClick}
-                    >
+                    <div className={styles.hamburger} onClick={handleHamburgerClick}>
                         <div
-                            className={`${styles.bar1} ${
-                                isOpenMenu ? styles.bar1Change : ''
-                            }`}
+                            className={`${styles.bar1} ${isOpenMenu ? styles.bar1Change : ''}`}
                         ></div>
                         <div
-                            className={`${styles.bar2} ${
-                                isOpenMenu ? styles.bar2Change : ''
-                            }`}
+                            className={`${styles.bar2} ${isOpenMenu ? styles.bar2Change : ''}`}
                         ></div>
                         <div
-                            className={`${styles.bar3} ${
-                                isOpenMenu ? styles.bar3Change : ''
-                            }`}
+                            className={`${styles.bar3} ${isOpenMenu ? styles.bar3Change : ''}`}
                         ></div>
                     </div>
                     <ul
-                        className={`${styles.menu} ${
-                            isOpenMenu ? styles.menuShow : ''
-                        }`}
+                        className={`${styles.menu} ${isOpenMenu ? styles.menuShow : ''}`}
                         onClick={handleHamburgerClick}
                     >
                         {menu}
