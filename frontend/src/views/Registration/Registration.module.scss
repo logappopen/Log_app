@@ -15,4 +15,55 @@
             right: 50px;
         }
     }
+    &__nav {
+        ul {
+            margin-top: 20px;
+            list-style: none;
+            text-align: center;
+            a {
+                text-decoration: none;
+                color: $text-first-color;
+                cursor: pointer;
+            }
+        }
+    }
+
+}
+.registrationForm{
+display:flex;
+align-items: center;
+flex-direction: column;
+    &__input{
+    padding: 10px;
+    width: 100%;
+    color:white;
+    background:transparent;
+    border:none;
+    border-bottom:1px solid #ccc;
+    max-width: 600px;
+    outline:none;
+    margin-bottom: 15px;
+    &::placeholder{
+        color:white;
+    }
+    
+}
+    &__input--submitButton{
+    
+    margin-top:20px;
+    max-width: 150px;
+    background:white;
+    border:none;
+    color:#1b83de;
+    border-radius: 3px;
+    padding: 15px 30px;
+    text-transform: uppercase;
+    font-weight: 600;
+    outline:none;
+    cursor:pointer;
+    transition: 0.3s;
+    &:hover{
+        transform:scale(1.1);
+    }
+}
 }
