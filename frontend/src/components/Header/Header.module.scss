@@ -38,35 +38,7 @@
         }
     }
 }
-// .nav {
-//     .menu {
-//         display: flex;
-//         flex-direction: column;
-//         justify-content: space-around;
-//         list-style: none;
-//         li {
-//             display: flex;
-//             align-items: center;
-//             margin-bottom: 12px;
-//             margin-left: 20px;
-//             width: 100px;
-//             height: 30px;
 
-//             a {
-//                 display: block;
-//                 width: 100%;
-//                 height: 100%;
-//                 // @include button;
-//                 font-size: $s-font-size;
-//                 text-transform: uppercase;
-//                 text-decoration: none;
-//                 text-align: center;
-//                 line-height: $s-font-size !important;
-//                 cursor: pointer;
-//             }
-//         }
-//     }
-// }
 .nav {
     min-width: 100px;
     .menu {
@@ -74,10 +46,10 @@
         top: 3em;
         margin: 0.5em 0;
         right: 1em;
-        display: flex;
+        display: none;
+        // display: flex;
+        // visibility: hidden;
         flex-direction: column;
-        // width: 200px;
-        // height: 200px;
         justify-content: flex-end;
         align-items: flex-start;
 
@@ -97,7 +69,6 @@
                 display: block;
                 width: 100%;
                 height: 100%;
-                // @include button;
                 font-size: $m-font-size;
                 text-transform: uppercase;
                 text-decoration: none;
@@ -117,10 +88,6 @@
                     transition: 0.2s ease-in-out all;
                 }
 
-                &:hover {
-                    // color: #fff;
-                }
-
                 &:hover::before {
                     left: 0;
                 }
@@ -129,15 +96,9 @@
     }
     .hamburger {
         position: absolute;
-        // display: flex;
-        // flex-direction: column;
-        // align-items: flex-end;
         width: 35px;
         font-size: 1em;
-        // margin-right: 0.5em;
-        // align-self: flex-start;
         right: 1.5em;
-        // top: 0;
         cursor: pointer;
 
         & .bar1,
@@ -145,7 +106,6 @@
         & .bar3 {
             width: 35px;
             height: 5px;
-            // background-color: #333;
             margin: 6px 0;
             -webkit-transition: 0.4s;
             transition: 0.4s;
@@ -153,22 +113,27 @@
             background-color: $fourth-color;
         }
 
-        & .bar1.change {
+        & .bar1Change {
             width: 35px;
             transform: rotate(-45deg) translate(-9px, 6px);
         }
 
-        & .bar2.change {
+        & .bar2Change {
             width: 35px;
             opacity: 0;
         }
 
-        & .bar3.change {
+        & .bar3Change {
             width: 35px;
             transform: rotate(45deg) translate(-8px, -8px);
         }
     }
+    .menuShow {
+        // visibility: visible;
+        display: flex;
+    }
 }
+
 @media (orientation: landscape) and (min-width: 1024px) {
     .nav {
         .menu {

@@ -1,5 +1,4 @@
-// import React, { useState } from 'react';
-import React from 'react'
+import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import styles from './Header.module.scss'
 
@@ -10,6 +9,8 @@ const list = [
 ]
 
 const Header = () => {
+    const [isOpenMenu, setIsOpenMenu] = useState(false)
+
     // const [pages, setPages] = useState(true);
     const menu = list.map((item) => (
         <li key={item.name}>
@@ -27,6 +28,11 @@ const Header = () => {
     //     }
     // };
 
+    const handleHamburgerClick = (e) => {
+        e.preventDefault()
+        setIsOpenMenu(!isOpenMenu)
+    }
+
     return (
         <>
             <div className={styles.header}>
@@ -35,12 +41,33 @@ const Header = () => {
                 </div>
 
                 <nav className={styles.nav}>
-                    <div className={styles.hamburger}>
-                        <div className={styles.bar1}></div>
-                        <div className={styles.bar2}></div>
-                        <div className={styles.bar3}></div>
+                    <div
+                        className={styles.hamburger}
+                        onClick={handleHamburgerClick}
+                    >
+                        <div
+                            className={`${styles.bar1} ${
+                                isOpenMenu ? styles.bar1Change : ''
+                            }`}
+                        ></div>
+                        <div
+                            className={`${styles.bar2} ${
+                                isOpenMenu ? styles.bar2Change : ''
+                            }`}
+                        ></div>
+                        <div
+                            className={`${styles.bar3} ${
+                                isOpenMenu ? styles.bar3Change : ''
+                            }`}
+                        ></div>
                     </div>
-                    <ul className={styles.menu}>{menu}</ul>
+                    <ul
+                        className={`${styles.menu} ${
+                            isOpenMenu ? styles.menuShow : ''
+                        }`}
+                    >
+                        {menu}
+                    </ul>
                 </nav>
             </div>
         </>
