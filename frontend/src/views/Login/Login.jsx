@@ -29,8 +29,17 @@ const LoginPage = () => {
                 username: email,
                 password: password,
             })
-            .then(function (response) {
-                console.log(response);
+            .then(function ({ data }) {
+                console.log(data);
+                localStorage.setItem(
+                    'LogAppUser',
+                    JSON.stringify({
+                        login: true,
+                        id: data.user.id,
+                        email: data.user.email,
+                        token: data.token,
+                    })
+                );
             })
             .catch(function (error) {
                 console.log(error);
