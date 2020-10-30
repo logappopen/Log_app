@@ -65,6 +65,7 @@ const Header = () => {
                         className={`${styles.menu} ${
                             isOpenMenu ? styles.menuShow : ''
                         }`}
+                        onClick={handleHamburgerClick}
                     >
                         {menu}
                     </ul>
