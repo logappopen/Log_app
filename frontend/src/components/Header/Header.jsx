@@ -35,6 +35,11 @@ const Header = () => {
                 </div>
 
                 <nav className={styles.nav}>
+                    <div className={styles.hamburger}>
+                        <div className={styles.bar1}></div>
+                        <div className={styles.bar2}></div>
+                        <div className={styles.bar3}></div>
+                    </div>
                     <ul className={styles.menu}>{menu}</ul>
                 </nav>
             </div>
