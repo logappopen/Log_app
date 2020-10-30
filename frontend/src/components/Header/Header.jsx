@@ -1,13 +1,13 @@
 // import React, { useState } from 'react';
-import React from 'react';
-import { NavLink } from 'react-router-dom';
-import styles from './Header.module.scss';
+import React from 'react'
+import { NavLink } from 'react-router-dom'
+import styles from './Header.module.scss'
 
 const list = [
     { name: 'start', path: '/', exact: true },
     { name: 'kontakt', path: '/contact' },
     { name: 'pomoc', path: '/help' },
-];
+]
 
 const Header = () => {
     // const [pages, setPages] = useState(true);
@@ -17,7 +17,7 @@ const Header = () => {
                 {item.name}
             </NavLink>
         </li>
-    ));
+    ))
     // const sendToPage = (event) => {
     //     if (event.target.id === 'js-data-contact') {
     //         console.log('kontakt');
@@ -38,6 +38,6 @@ const Header = () => {
                 </nav>
             </div>
         </>
-    );
-};
-export default Header;
+    )
+}
+export default Header
