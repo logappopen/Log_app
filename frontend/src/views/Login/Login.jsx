@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Redirect } from 'react-router-dom'
 import axios from 'axios'
 import styles from './Login.module.scss'
 
@@ -34,14 +34,18 @@ const LoginPage = () => {
                 localStorage.setItem(
                     'LogAppUser',
                     JSON.stringify({
-                        login: true,
+                        isLogged: true,
                         id: data.user.id,
                         email: data.user.email,
                         token: data.token,
                     })
                 )
             })
+            .then(function () {
+                isLogged()
+            })
             .catch(function (error) {
+                localStorage.removeItem('LogAppUser')
                 console.log(error)
             })
     }
@@ -60,6 +64,13 @@ const LoginPage = () => {
             console.log('Wpisano błędny email')
         }
         console.log(email, password, isValidEmail)
+    }
+
+    const isLogged = () => {
+        const isLogged = JSON.parse(localStorage.getItem('LogAppUser')).isLogged
+        // console.log('isLogged', isLogged)
+
+        return isLogged ? isLogged : false
     }
 
     return (
