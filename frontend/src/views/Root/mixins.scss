@@ -84,7 +84,7 @@
 ) {
     @include neustyle($color, $hover, $direction, $inset, $distance);
     flex-basis: 90%;
-    height: 50px;
+    // height: 20px;
     line-height: 1.3em;
     background: transparent;
     margin: 0 1.5em;

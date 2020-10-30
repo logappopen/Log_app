@@ -59,8 +59,12 @@
         &__label {
             font-size: $m-font-size;
         }
-        &__input {
-            height: 50px;
-        }
+        // &__input {
+        //     height: 20px;
+        // }
     }
+}
+
+.valid-fail {
+    border-bottom: 2px solid red;
 }

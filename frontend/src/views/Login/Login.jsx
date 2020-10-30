@@ -59,13 +59,16 @@ const LoginPage = () => {
                 <label className={styles['login-form__label']} htmlFor="login">
                     Adres email
                 </label>
-                <input
-                    value={email}
-                    type="email"
-                    name="login"
-                    onChange={handleOnPushEmail}
-                    className={styles['login-form__input']}
-                />
+                <div>
+                    <input
+                        value={email}
+                        type="email"
+                        name="login"
+                        onChange={handleOnPushEmail}
+                        className={`${styles['login-form__input']}
+                         ${!isValidEmail && email ? styles['valid-fail'] : ''}`}
+                    />
+                </div>
                 <label
                     className={styles['login-form__label']}
                     htmlFor="password"
