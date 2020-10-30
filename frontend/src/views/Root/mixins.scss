@@ -1,0 +1,94 @@
+@mixin neustyle(
+    $color: $basic-color,
+    $hover: true,
+    $direction: topleft,
+    $inset: false,
+    $distance: 2px
+) {
+    border-radius: 20px;
+    border: none;
+    outline: none;
+    $v: 2px;
+
+    @if $distance {
+        $v: $distance;
+    }
+
+    $topX: ($v * 2 * -1);
+    $topY: ($v * 2 * -1);
+
+    @if $direction == 'topcenter' {
+        $topX: 0px;
+        $topY: ($v * 2 * -1);
+    }
+    @if $direction == 'topright' {
+        $topX: ($v * 2);
+        $topY: ($v * 2 * -1);
+    }
+
+    $out: $topX $topY ($v * 3) lighten($color, 12),
+        $topX * -1 $topY * -1 ($v * 3) darken($color, 12),
+        inset $topX $topY ($v * 6) lighten($color, 0),
+        inset $topX * -1 $topY * -1 ($v * 6) darken($color, 0);
+
+    $in: $topX $topY ($v * 5) lighten($color, 0),
+        $topX * -1 $topY * -1 ($v * 3) darken($color, 0),
+        inset $topX $topY ($v * 6) lighten($color, 12),
+        inset $topX/2 $topY/2 ($v) lighten($color, 12),
+        inset $topX * -1 $topY * -1 ($v * 3) darken($color, 10);
+
+    @if $inset {
+        box-shadow: $in;
+    } @else {
+        box-shadow: $out;
+    }
+
+    @if $hover {
+        &:hover {
+            @if $inset {
+                box-shadow: $out;
+            } @else {
+                box-shadow: $in;
+            }
+        }
+    }
+}
+
+@mixin button(
+    $color: $basic-color,
+    $hover: true,
+    $direction: topleft,
+    $inset: false,
+    $distance: 2px
+) {
+    margin: 20px 0;
+    padding: 10px 20px;
+    border: none;
+    color: $text-first-color;
+    background-color: $basic-color;
+    @include neustyle($color, $hover, $direction, $inset, $distance);
+    font-size: $m-font-size;
+    cursor: pointer;
+    transition: 0.3s;
+    &:hover {
+        color: $text-second-color;
+    }
+}
+
+@mixin input(
+    $color: $basic-color,
+    $hover: false,
+    $direction: topleft,
+    $inset: true,
+    $distance: 2px
+) {
+    @include neustyle($color, $hover, $direction, $inset, $distance);
+    flex-basis: 90%;
+    height: 50px;
+    line-height: 1.3em;
+    background: transparent;
+    margin: 0 1.5em;
+    color: $text-first-color;
+    padding: 12px;
+    cursor: auto;
+}

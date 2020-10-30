@@ -2,7 +2,7 @@
 .section-login {
     position: relative;
     width: 95vw;
-    margin: 70px auto;
+    margin: 10px auto;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -11,12 +11,12 @@
     }
     &__nav {
         ul {
-            margin-top: 30px;
+            // margin-top: 30px;
             list-style: none;
             text-align: center;
             a {
                 text-decoration: none;
-                color: $text-second-color;
+                color: $text-first-color;
                 cursor: pointer;
             }
         }
@@ -29,7 +29,7 @@
     @media (orientation: landscape) and (min-width: 1024px) {
         &__nav {
             ul {
-                margin-top: 60px;
+                margin-top: 30px;
             }
         }
         &__return-button {
@@ -40,33 +40,19 @@
 }
 .login-form {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
     align-items: center;
-    width: 100%;
-    height: 200px;
     &__label {
         flex-basis: 30%;
-        margin: 30px 10px 5px 10px;
+        margin: 10px 1em;
+        align-self: flex-start;
     }
     &__input {
-        flex-basis: 70%;
-        height: 20px;
-        border: 1px solid $basic-color;
+        @include input;
     }
     &__button {
-        margin: 30px;
-        padding: 10px 20px;
-        border: none;
-        background-color: $basic-color;
-        color: $text-first-color;
-        font-size: $m-font-size;
-        cursor: pointer;
-        transition: 0.3s;
-    }
-    &__button:hover {
-        background-color: $third-color;
-        color: $text-second-color;
+        @include button;
     }
     @media (orientation: landscape) and (min-width: 1024px) {
         width: 30%;
@@ -74,7 +60,7 @@
             font-size: $m-font-size;
         }
         &__input {
-            height: 30px;
+            height: 50px;
         }
     }
 }
