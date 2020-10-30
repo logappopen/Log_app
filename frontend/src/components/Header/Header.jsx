@@ -31,7 +31,7 @@ const Header = () => {
         <>
             <div className={styles.header}>
                 <div className={styles.logo}>
-                    <h1 className={styles.title}>Aplikacja_name</h1>
+                    {/* <h1 className={styles.title}>Aplikacja_name</h1> */}
                 </div>
                 <nav className={styles.nav}>
                     <ul className={styles.menu}>{menu}</ul>
