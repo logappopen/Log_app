@@ -95,6 +95,7 @@
         }
     }
     .hamburger {
+        display: block;
         position: absolute;
         width: 35px;
         font-size: 1em;
@@ -137,17 +138,28 @@
 @media (orientation: landscape) and (min-width: 1024px) {
     .nav {
         .menu {
+            display: flex;
             flex-direction: row;
-            margin-top: 50px;
+            border: none;
             li {
                 width: 200px;
-                height: 50px;
+                margin-right: 10px;
+                overflow: visible;
+
                 a {
                     @include button;
                     font-size: $x-font-size;
                     line-height: 30px !important;
+
+                    &::before {
+                        display: none;
+                    }
                 }
             }
+        }
+
+        .hamburger {
+            display: none;
         }
     }
 }
