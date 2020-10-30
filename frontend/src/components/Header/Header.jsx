@@ -29,12 +29,12 @@ const Header = () => {
 
     return (
         <>
-            <div className={styles['header']}>
-                <div className={styles['logo']}>
-                    <h1 className={styles['title']}>Aplikacja_name</h1>
+            <div className={styles.header}>
+                <div className={styles.logo}>
+                    <h1 className={styles.title}>Aplikacja_name</h1>
                 </div>
-                <nav className={styles['info']}>
-                    <ul className={styles['menu']}>{menu}</ul>
+                <nav className={styles.nav}>
+                    <ul className={styles.menu}>{menu}</ul>
                 </nav>
             </div>
         </>

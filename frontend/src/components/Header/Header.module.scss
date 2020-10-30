@@ -35,7 +35,7 @@
         }
     }
 }
-.info {
+.nav {
     .menu {
         display: flex;
         flex-direction: column;
@@ -65,7 +65,7 @@
     }
 }
 @media (orientation: landscape) and (min-width: 1024px) {
-    .info {
+    .nav {
         .menu {
             flex-direction: row;
             margin-top: 50px;
