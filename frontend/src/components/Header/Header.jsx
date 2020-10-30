@@ -11,7 +11,6 @@ const list = [
 const Header = () => {
     const [isOpenMenu, setIsOpenMenu] = useState(false)
 
-    // const [pages, setPages] = useState(true);
     const menu = list.map((item) => (
         <li key={item.name}>
             <NavLink to={item.path} exact={item.exact ? item.exact : false}>
@@ -19,14 +18,6 @@ const Header = () => {
             </NavLink>
         </li>
     ))
-    // const sendToPage = (event) => {
-    //     if (event.target.id === 'js-data-contact') {
-    //         console.log('kontakt');
-    //     }
-    //     if (event.target.id === 'js-data-help') {
-    //         console.log('help');
-    //     }
-    // };
 
     const handleHamburgerClick = (e) => {
         e.preventDefault()
@@ -36,9 +27,7 @@ const Header = () => {
     return (
         <>
             <div className={styles.header}>
-                <div className={styles.logo}>
-                    {/* <h1 className={styles.title}>Aplikacja_name</h1> */}
-                </div>
+                <div className={styles.logo}></div>
 
                 <nav className={styles.nav}>
                     <div
