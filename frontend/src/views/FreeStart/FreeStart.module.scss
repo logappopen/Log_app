@@ -18,7 +18,7 @@
   }
   @media (orientation: landscape) and (min-width: 1024px) {
     margin: -70px auto 0 auto;
-    &__return-button {
+    .returnButton {
       bottom: -80px;
       right: 50px;
     }
