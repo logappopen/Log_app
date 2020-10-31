@@ -29,8 +29,8 @@ const LoginPage = () => {
     const sendCredentials = () => {
         return axios
             .post(process.env.REACT_APP_API_LOGIN_URL, {
-                username: email,
-                password: password,
+                email,
+                password,
             })
             .then(function ({ data }) {
                 // console.log(data)
@@ -106,7 +106,7 @@ const LoginPage = () => {
                     <input
                         value={email}
                         type="email"
-                        name="login"
+                        name="email"
                         onChange={handleOnPushEmail}
                         className={`${styles['login-form__input']}
                          ${!isValidEmail && email ? styles['valid-fail'] : ''}`}
