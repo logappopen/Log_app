@@ -76,7 +76,7 @@ const LoginPage = () => {
 
     return (
         <div className={styles['section-login']}>
-            <Message />
+            <Message message="Wiadomość" alert="true" />
             <form className={styles['login-form']} action="submit">
                 <label className={styles['login-form__label']} htmlFor="login">
                     Adres email
