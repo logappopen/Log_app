@@ -4,6 +4,7 @@ import axios from 'axios'
 import styles from './Login.module.scss'
 
 import ReturnButton from '../../components/ReturnButton/ReturnButton'
+import Message from '../../components/Message/Message'
 
 const LoginPage = () => {
     const [email, setEmail] = useState('')
@@ -75,6 +76,7 @@ const LoginPage = () => {
 
     return (
         <div className={styles['section-login']}>
+            <Message />
             <form className={styles['login-form']} action="submit">
                 <label className={styles['login-form__label']} htmlFor="login">
                     Adres email
