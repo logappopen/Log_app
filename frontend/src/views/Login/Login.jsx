@@ -90,7 +90,7 @@ const LoginPage = () => {
         // useEffect(() => {
         const timer = setTimeout(() => {
             setIsVisibleMessage(false)
-        }, 3000)
+        }, 5000)
         //     return () => clearTimeout(timer)
         // }, [])
     }
