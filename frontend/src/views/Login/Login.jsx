@@ -96,42 +96,37 @@ const LoginPage = () => {
     }
 
     return (
-        <div className={styles['section-login']}>
+        <div className={styles.sectionLogin}>
             {isVisibleMessage ? <Message message={messageText} alert={isMessageAlert} /> : ''}
-            <form className={styles['login-form']} action="submit">
-                <label className={styles['login-form__label']} htmlFor="login">
+            <form className={styles.form} action="submit">
+                <label className={styles.label} htmlFor="login">
                     Adres email
                 </label>
-                <div>
-                    <input
-                        value={email}
-                        type="email"
-                        name="email"
-                        onChange={handleOnPushEmail}
-                        className={`${styles['login-form__input']}
-                         ${!isValidEmail && email ? styles['valid-fail'] : ''}`}
-                    />
-                </div>
-                <label className={styles['login-form__label']} htmlFor="password">
+                <input
+                    type="email"
+                    name="email"
+                    onChange={handleOnPushEmail}
+                    className={styles.input}
+                />
+                <label className={styles.label} htmlFor="password">
                     Hasło
                 </label>
                 <input
-                    value={password}
                     type="password"
                     name="password"
                     onChange={handleOnPushPassword}
-                    className={styles['login-form__input']}
+                    className={styles.input}
                 />
-                <button className={styles['login-form__button']} onClick={handleOnClickLogin}>
+                <button className={styles.button} onClick={handleOnClickLogin}>
                     Logowanie
                 </button>
             </form>
-            <nav className={styles['section-login__nav']}>
+            <nav className={styles.nav}>
                 <ul>
                     <NavLink to="/lost_password">Zapomniałem hasła...</NavLink>
                 </ul>
             </nav>
-            <div className={styles['section-login__return-button']}>
+            <div className={styles.returnButton}>
                 <ReturnButton />
             </div>
         </div>
