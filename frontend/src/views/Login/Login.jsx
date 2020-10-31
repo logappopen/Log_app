@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { NavLink } from 'react-router-dom'
 import axios from 'axios'
 import styles from './Login.module.scss'
@@ -33,7 +33,7 @@ const LoginPage = () => {
                 password: password,
             })
             .then(function ({ data }) {
-                console.log(data)
+                // console.log(data)
                 localStorage.setItem(
                     'LogAppUser',
                     JSON.stringify({
@@ -43,13 +43,18 @@ const LoginPage = () => {
                         token: data.token,
                     })
                 )
+                return data
             })
-            .then(function () {
+            .then(function (data) {
+                console.log(data)
+
                 isLogged()
+                showMessage(`Zalogowałeś się poprawnie jako ${data.user.email}`)
             })
             .catch(function (error) {
                 localStorage.removeItem('LogAppUser')
                 console.log(error)
+                showMessage(`Błąd logowania!`, true)
             })
     }
 
@@ -65,6 +70,7 @@ const LoginPage = () => {
             sendCredentials()
         } else {
             console.log('Wpisano błędny email')
+            showMessage(`Wpisz poprawny email!`, true)
         }
         // console.log(email, password, isValidEmail)
     }
@@ -74,6 +80,19 @@ const LoginPage = () => {
         // console.log('isLogged', isLogged)
 
         return isLogged ? isLogged : false
+    }
+
+    const showMessage = (text, isAlert) => {
+        setMessageText(text)
+        setIsMessageAlert(isAlert)
+        setIsVisibleMessage(true)
+
+        // useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsVisibleMessage(false)
+        }, 3000)
+        //     return () => clearTimeout(timer)
+        // }, [])
     }
 
     return (
