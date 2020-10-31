@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { NavLink, Redirect } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import axios from 'axios'
 import styles from './Login.module.scss'
 
