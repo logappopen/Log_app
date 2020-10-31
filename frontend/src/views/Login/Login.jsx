@@ -11,6 +11,8 @@ const LoginPage = () => {
     const [isValidEmail, setIsValidEmail] = useState(false)
     const [password, setPassword] = useState('')
     const [isVisibleMessage, setIsVisibleMessage] = useState(false)
+    const [messageText, setMessageText] = useState('')
+    const [isMessageAlert, setIsMessageAlert] = useState(false)
     const handleOnPushEmail = (e) => {
         // don't remember from where i copied this code, but this works.
         let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -76,7 +78,7 @@ const LoginPage = () => {
 
     return (
         <div className={styles['section-login']}>
-            {isVisibleMessage ? <Message message="Wiadomość" alert={true} /> : ''}
+            {isVisibleMessage ? <Message message={messageText} alert={isMessageAlert} /> : ''}
             <form className={styles['login-form']} action="submit">
                 <label className={styles['login-form__label']} htmlFor="login">
                     Adres email
