@@ -1,1 +1,26 @@
 @import '../Root/common.scss';
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+
+    .info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        & h1 {
+            font-size: $l-font-size * 4;
+            margin: 0;
+            margin-bottom: 0.3em;
+            text-align: center;
+        }
+        & p {
+            font-size: $m-font-size * 1.2;
+            text-align: center;
+        }
+    }
+    img {
+        margin-right: 20px;
+    }
+}
