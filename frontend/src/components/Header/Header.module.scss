@@ -1,5 +1,6 @@
-@import '../../views/Root/common.scss';
+@import "../../views/Root/common.scss";
 .header {
+
     display: flex;
     flex-wrap: nowrap;
     justify-content: space-between;
@@ -37,6 +38,7 @@
             flex-basis: 60%;
         }
     }
+  }
 }
 
 .nav {
@@ -162,4 +164,5 @@
             display: none;
         }
     }
+  }
 }
