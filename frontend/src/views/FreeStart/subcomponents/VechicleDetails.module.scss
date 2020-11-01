@@ -1,0 +1,8 @@
+@import "../../Root/common.scss";
+
+.vechicleDetails {
+  // margin: 100px;
+  button {
+    @include button;
+  }
+}

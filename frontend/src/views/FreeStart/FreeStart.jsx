@@ -1,4 +1,5 @@
 import React from "react";
+import VechicleDetails from "./subcomponents/VechicleDetails";
 import styles from "./FreeStart.module.scss";
 
 import ReturnButton from "../../components/ReturnButton/ReturnButton";
@@ -12,9 +13,11 @@ const FreeStartPage = () => {
         Zaloguj się aby zapisywać swoją pracę.
       </p>
       <div className={styles["main"]}>
-        <div className={styles["loadDetails"]}></div>
+        <div className={styles["vechicleDetails"]}>
+          <VechicleDetails />
+        </div>
         <div className={styles["infoDetails"]}></div>
-        <div className={styles["vechicleDetails"]}></div>
+        <div className={styles["loadDetails"]}></div>
       </div>
       <div className={styles["returnButton"]}>
         <ReturnButton />

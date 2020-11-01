@@ -5,10 +5,16 @@
   margin: -20px auto 0 auto;
   text-align: center;
   .main {
-    margin: 20px auto;
-    width: 95%;
+    width: 100%;
     height: 900px;
-    border: 1px solid white;
+    display: flex;
+    flex-direction: column;
+    .vechicleDetails,
+    .infoDetails,
+    .loadDetails {
+      flex-basis: 33%;
+      @include element;
+    }
   }
   .returnButton {
     position: absolute;
@@ -18,6 +24,10 @@
   }
   @media (orientation: landscape) and (min-width: 1024px) {
     margin: -70px auto 0 auto;
+    .main {
+      flex-direction: row;
+      height: auto;
+    }
     .returnButton {
       bottom: -80px;
       right: 50px;
