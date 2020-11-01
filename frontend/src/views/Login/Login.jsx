@@ -87,12 +87,9 @@ const LoginPage = () => {
         setIsMessageAlert(isAlert)
         setIsVisibleMessage(true)
 
-        // useEffect(() => {
-        const timer = setTimeout(() => {
+        setTimeout(() => {
             setIsVisibleMessage(false)
         }, 5000)
-        //     return () => clearTimeout(timer)
-        // }, [])
     }
 
     return (
