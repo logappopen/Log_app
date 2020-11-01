@@ -20,7 +20,6 @@ const Main = (props) => {
             <Route path="/registration" component={RegistrationPage} />
             <Route path="/free_start" component={FreeStartPage} />
             <Route path="/lost_password" component={LostPasswordPage} />
-            {/* <Route path="/empty" component={ErrorPage} /> */}
             <Route path="*" component={ErrorPage} status={404} />
         </Switch>
     )
