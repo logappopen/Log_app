@@ -15,7 +15,7 @@ const LoginPage = () => {
     const [isMessageAlert, setIsMessageAlert] = useState(false)
     const handleOnPushEmail = (e) => {
         // don't remember from where i copied this code, but this works.
-        let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
 
         if (re.test(e.target.value)) {
             // this is a valid email address
@@ -25,6 +25,22 @@ const LoginPage = () => {
             setIsValidEmail(false)
         }
         setEmail(e.target.value)
+    }
+    const isLogged = () => {
+        const { isLogged } = JSON.parse(localStorage.getItem('LogAppUser'))
+        // console.log('isLogged', isLogged)
+
+        return isLogged || false
+    }
+
+    const showMessage = (text, isAlert) => {
+        setMessageText(text)
+        setIsMessageAlert(isAlert)
+        setIsVisibleMessage(true)
+
+        setTimeout(() => {
+            setIsVisibleMessage(false)
+        }, 5000)
     }
     const sendCredentials = () => {
         return axios
@@ -73,23 +89,6 @@ const LoginPage = () => {
             showMessage(`Wpisz poprawny email!`, true)
         }
         // console.log(email, password, isValidEmail)
-    }
-
-    const isLogged = () => {
-        const isLogged = JSON.parse(localStorage.getItem('LogAppUser')).isLogged
-        // console.log('isLogged', isLogged)
-
-        return isLogged ? isLogged : false
-    }
-
-    const showMessage = (text, isAlert) => {
-        setMessageText(text)
-        setIsMessageAlert(isAlert)
-        setIsVisibleMessage(true)
-
-        setTimeout(() => {
-            setIsVisibleMessage(false)
-        }, 5000)
     }
 
     return (

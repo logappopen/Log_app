@@ -1,5 +1,14 @@
 {
     "extends": ["airbnb", "prettier", "prettier/react"],
+    "env": {
+        "jest": true
+    },
+    "globals": {
+        "window": true,
+        "document": true,
+        "localStorage": true,
+        "fetch": true
+    },
     "rules": {
         "react/jsx-filename-extension": [
             1,

@@ -1,6 +1,6 @@
-import React from 'react'
-import styles from './Error.module.scss'
-import img404 from '../../assets/images/404.png'
+import React from 'react';
+import styles from './Error.module.scss';
+import img404 from '../../assets/images/404.png';
 
 const ErrorPage = () => {
     return (
@@ -11,7 +11,7 @@ const ErrorPage = () => {
             </div>
             <img src={img404} alt="Error 404" />
         </div>
-    )
-}
+    );
+};
 
-export default ErrorPage
+export default ErrorPage;
