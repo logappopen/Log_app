@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Help.modules.scss';
 
-const HelpPage = (props) => {
+const HelpPage = () => {
     return (
         <div className={styles['section-help']}>
             <h1>Help_Page</h1>

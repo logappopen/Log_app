@@ -10,7 +10,7 @@ import FreeStartPage from '../FreeStart/FreeStart';
 import LostPasswordPage from '../LostPassword/LostPassword';
 import ErrorPage from '../Error/Error';
 
-const Main = (props) => {
+const Main = () => {
     return (
         <Switch>
             <Route path="/" exact component={StartPage} />

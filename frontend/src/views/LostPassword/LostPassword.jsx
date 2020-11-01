@@ -5,7 +5,7 @@ import styles from './LostPassword.module.scss';
 const EMAILS = [];
 
 const LostPasswordPage = () => {
-    const [vievMessage, setVievMessage] = useState('');
+    const [viewMessage, setViewMessage] = useState('');
     const [emailValue, setEmailValue] = useState('');
 
     const handleOnPushEmail = (event) => {
@@ -14,46 +14,39 @@ const LostPasswordPage = () => {
         if (eMail) {
             setEmailValue(eMail);
             EMAILS.push(eMail);
-        } else return;
+        }
+        return null;
     };
     const handleOnClickLogin = () => {
         if (EMAILS.lenght > 0) {
-            setVievMessage(
-                vievMessage + 'na podanego maila został wysłany reset hasła'
-            );
+            setViewMessage(`${viewMessage}na podanego maila został wysłany reset hasła`);
 
             //   setTimeout(() => {
             //     //   setEmailValue("");
-            //     setVievMessage(vievMessage + "");
+            //     setViewMessage(viewMessage + "");
             //   }, 4000);
         } else {
-            setVievMessage(vievMessage + 'nie podano adresu eMail');
+            setViewMessage(`${viewMessage}nie podano adresu eMail`);
         }
     };
 
     return (
         <div className={styles['section-lost-password']}>
-            <form
-                className={
-                    styles[('section-lost-password__form', 'login-form')]
-                }
-                action=""
-            >
+            <form className={styles[('section-lost-password__form', 'login-form')]} action="">
                 <label className={styles['login-form__label']} htmlFor="login">
                     Wpisz adres eMail podany przy rejestarcji konta
+                    <input
+                        type="email"
+                        onChange={handleOnPushEmail}
+                        value={emailValue}
+                        className={styles['login-form__input']}
+                    />
                 </label>
-                <input
-                    type="email"
-                    onChange={handleOnPushEmail}
-                    value={emailValue}
-                    className={styles['login-form__input']}
-                />
-                <p className={styles['section-lost-password__info']}>
-                    {vievMessage}
-                </p>
+                <p className={styles['section-lost-password__info']}>{viewMessage}</p>
                 <button
                     className={styles['login-form__button']}
                     onClick={handleOnClickLogin}
+                    type="submit"
                 >
                     Wyślij
                 </button>
