@@ -4,6 +4,7 @@ import axios from 'axios';
 import styles from './Login.module.scss';
 
 import useStateWithLabel from '../../helpers/UseStateWhitLabel';
+import checkEmail from '../../helpers/CheckEmail';
 import ReturnButton from '../../components/ReturnButton/ReturnButton';
 import Message from '../../components/Message/Message';
 
@@ -16,16 +17,7 @@ const LoginPage = () => {
     const [isMessageAlert, setIsMessageAlert] = useStateWithLabel('isMessageAlert', false);
 
     const handleOnPushEmail = (e) => {
-        // don't remember from where i copied this code, but this works.
-        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
-        if (re.test(e.target.value)) {
-            // this is a valid email address
-            setIsValidEmail(true);
-        } else {
-            // invalid email, maybe show an error to the user.
-            setIsValidEmail(false);
-        }
+        setIsValidEmail(checkEmail(e.target.value));
         setEmail(e.target.value);
     };
     const isLogged = () => {
