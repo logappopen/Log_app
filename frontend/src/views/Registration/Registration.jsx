@@ -37,7 +37,7 @@ const RegistrationPage = () => {
                     value={userPassword}
                     placeholder="Password"
                 />
-                <input className={styles.button} type="submit" value="Register" />
+                <input className={styles.button} type="submit" value="Rejestracja" />
             </form>
             <nav className={styles.nav}>
                 <ul>

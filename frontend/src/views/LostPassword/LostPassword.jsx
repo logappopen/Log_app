@@ -47,7 +47,9 @@ const LostPasswordPage = () => {
                     Wyślij
                 </button>
             </form>
-            <ReturnButton />
+            <div className="returnButtonWrapper">
+                <ReturnButton />
+            </div>
         </div>
     );
 };
