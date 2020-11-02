@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
+import axios from 'axios';
 import styles from './Registration.module.scss';
 
 import useStateWithLabel from '../../helpers/UseStateWhitLabel';
@@ -11,7 +12,20 @@ const RegistrationPage = () => {
     const [username, setUsername] = useStateWithLabel('username', '');
     const [email, setEmail] = useStateWithLabel('email', '');
     const [userPassword, setUserPassword] = useStateWithLabel('userPassword', '');
-    // const [userPasswordRepeat, setUserPasswordRepeat] = useStateWithLabel('userPasswordRepeat', '');
+    const [userPasswordRepeat, setUserPasswordRepeat] = useStateWithLabel('userPasswordRepeat', '');
+    const [isVisibleMessage, setIsVisibleMessage] = useStateWithLabel('isVisibleMessage', false);
+    const [messageText, setMessageText] = useStateWithLabel('messageText', '');
+    const [isMessageAlert, setIsMessageAlert] = useStateWithLabel('isMessageAlert', false);
+
+    const showMessage = (text, isAlert) => {
+        setMessageText(text);
+        setIsMessageAlert(isAlert);
+        setIsVisibleMessage(true);
+
+        setTimeout(() => {
+            setIsVisibleMessage(false);
+        }, 5000);
+    };
 
     const checkFrom = () => {
         const errors = [];
@@ -28,15 +42,15 @@ const RegistrationPage = () => {
             console.log('brak hasła');
             errors.push(false);
         }
-        // if (!userPasswordRepeat) {
-        //     console.log('brak powtórzenia hasła');
-        //     errors.push(false);
-        // }
+        if (!userPasswordRepeat) {
+            console.log('brak powtórzenia hasła');
+            errors.push(false);
+        }
 
-        // if (userPassword !== userPasswordRepeat) {
-        //     console.log('hasła się nie zgadzają');
-        //     errors.push(false);
-        // }
+        if (userPassword !== userPasswordRepeat) {
+            console.log('hasła się nie zgadzają');
+            errors.push(false);
+        }
         if (!checkEmail(email)) {
             console.log('email jest niepoprawny');
             errors.push(false);
@@ -47,46 +61,35 @@ const RegistrationPage = () => {
 
     const sendCredentials = () => {
         return axios
-            .post(process.env.REACT_APP_API_LOGIN_URL, {
+            .post(process.env.REACT_APP_API_REGISTER_URL, {
+                username,
                 email,
-                password,
+                password: userPassword,
             })
             .then(({ data }) => {
-                // console.log(data)
-                localStorage.setItem(
-                    'LogAppUser',
-                    JSON.stringify({
-                        isLogged: true,
-                        id: data.user.id,
-                        username: data.user.username,
-                        email: data.user.email,
-                        token: data.token,
-                    }),
-                );
-                return data;
-            })
-            .then((data) => {
                 console.log(data);
-
-                isLogged();
-                showMessage(`Zalogowałeś się poprawnie jako ${data.user.username}`);
+                showMessage(`Zarejestrowałeś się poprawnie jako ${data.user.username}.`);
             })
             .catch((error) => {
-                localStorage.removeItem('LogAppUser');
                 console.log(error);
-                showMessage(`Błąd logowania!`, true);
+                console.log(error.response);
+                showMessage(`Błąd rejestracji!`, true);
             });
     };
 
     const handleRegistration = (e) => {
         e.preventDefault();
-        checkFrom();
+        if (checkFrom()) {
+            sendCredentials();
+        } else {
+            showMessage(`Źle wypełniony formularz!`, true);
+        }
     };
 
     return (
         <div className={styles.wrapper}>
             <h1>Zarejestruj się</h1>
-
+            {isVisibleMessage ? <Message message={messageText} alert={isMessageAlert} /> : ''}
             <form className={styles.form} onSubmit={handleRegistration}>
                 <input
                     className={styles.input}
@@ -109,13 +112,13 @@ const RegistrationPage = () => {
                     value={userPassword}
                     placeholder="Hasło"
                 />
-                {/* <input
+                <input
                     className={styles.input}
                     type="password"
                     onChange={(e) => setUserPasswordRepeat(e.target.value)}
                     value={userPasswordRepeat}
                     placeholder="Powtórz hasło"
-                /> */}
+                />
                 <input className={styles.button} type="submit" value="Rejestracja" />
             </form>
             <nav className={styles.nav}>
