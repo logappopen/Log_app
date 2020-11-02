@@ -94,3 +94,12 @@
         color: white;
     }
 }
+@mixin element($color: $basic-color, $direction: topright, $inset: false, $distance: 2px) {
+    margin: 20px 0;
+    padding: 10px 20px;
+    border: none;
+    color: $text-first-color;
+    background-color: $basic-color;
+    @include neustyle($color, $direction, $inset, $distance);
+    font-size: $m-font-size;
+}
