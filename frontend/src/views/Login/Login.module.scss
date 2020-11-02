@@ -44,11 +44,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    .label {
-        flex-basis: 30%;
-        margin: 10px 1em;
-        align-self: flex-start;
-    }
+
     .input {
         @include input;
     }
@@ -57,9 +53,7 @@
     }
     @media (orientation: landscape) and (min-width: 1024px) {
         width: 30%;
-        .label {
-            font-size: $m-font-size;
-        }
+
         .input {
             height: 50px;
         }

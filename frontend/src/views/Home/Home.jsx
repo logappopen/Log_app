@@ -1,23 +1,27 @@
-import React, { Component } from "react";
-import { BrowserRouter as Router } from "react-router-dom";
-import styles from "./Home.module.scss";
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import styles from './Home.module.scss';
 
-import Header from "../../components/Header/Header";
-import Main from "../Main/Main";
-import Footer from "../Footer/Footer";
+import Header from '../../components/Header/Header';
+import Main from '../Main/Main';
+import Footer from '../Footer/Footer';
 
-class Home extends Component {
-  render() {
+const Home = () => {
     return (
-      <Router>
-        <div className={styles["container"]}>
-          <div className={styles["containerHeader"]}>{<Header />}</div>
-          <div className={styles["containerSection"]}>{<Main />}</div>
-          <div className={styles["containeFooter"]}>{<Footer />}</div>
-        </div>
-      </Router>
+        <Router>
+            <div className={styles.container}>
+                <div className={styles.header}>
+                    <Header />
+                </div>
+                <div className={styles.section}>
+                    <Main />
+                </div>
+                <div className={styles.footer}>
+                    <Footer />
+                </div>
+            </div>
+        </Router>
     );
-  }
-}
+};
 
 export default Home;

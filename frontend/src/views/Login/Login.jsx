@@ -1,123 +1,122 @@
-import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
-import axios from 'axios'
-import styles from './Login.module.scss'
+import React, { useState, useDebugValue } from 'react';
+import { NavLink } from 'react-router-dom';
+import axios from 'axios';
+import styles from './Login.module.scss';
 
-import ReturnButton from '../../components/ReturnButton/ReturnButton'
-import Message from '../../components/Message/Message'
+import ReturnButton from '../../components/ReturnButton/ReturnButton';
+import Message from '../../components/Message/Message';
 
 const LoginPage = () => {
-    const [email, setEmail] = useState('')
-    const [isValidEmail, setIsValidEmail] = useState(false)
-    const [password, setPassword] = useState('')
-    const [isVisibleMessage, setIsVisibleMessage] = useState(false)
-    const [messageText, setMessageText] = useState('')
-    const [isMessageAlert, setIsMessageAlert] = useState(false)
+    // Function to show value name in devTools
+    function useStateWithLabel(name, initialValue) {
+        const [value, setValue] = useState(initialValue);
+        useDebugValue(`${name}: ${value}`);
+        return [value, setValue];
+    }
+
+    const [email, setEmail] = useStateWithLabel('email', '');
+    const [isValidEmail, setIsValidEmail] = useStateWithLabel('isValidemail', false);
+    const [password, setPassword] = useStateWithLabel('password', '');
+    const [isVisibleMessage, setIsVisibleMessage] = useStateWithLabel('isVisibleMessage', false);
+    const [messageText, setMessageText] = useStateWithLabel('messageText', '');
+    const [isMessageAlert, setIsMessageAlert] = useStateWithLabel('isMessageAlert', false);
+
     const handleOnPushEmail = (e) => {
         // don't remember from where i copied this code, but this works.
-        let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
         if (re.test(e.target.value)) {
             // this is a valid email address
-            setIsValidEmail(true)
+            setIsValidEmail(true);
         } else {
             // invalid email, maybe show an error to the user.
-            setIsValidEmail(false)
+            setIsValidEmail(false);
         }
-        setEmail(e.target.value)
-    }
+        setEmail(e.target.value);
+    };
+    const isLogged = () => {
+        return JSON.parse(localStorage.getItem('LogAppUser')) || false;
+    };
+
+    const showMessage = (text, isAlert) => {
+        setMessageText(text);
+        setIsMessageAlert(isAlert);
+        setIsVisibleMessage(true);
+
+        setTimeout(() => {
+            setIsVisibleMessage(false);
+        }, 5000);
+    };
     const sendCredentials = () => {
         return axios
             .post(process.env.REACT_APP_API_LOGIN_URL, {
                 email,
                 password,
             })
-            .then(function ({ data }) {
+            .then(({ data }) => {
                 // console.log(data)
                 localStorage.setItem(
                     'LogAppUser',
                     JSON.stringify({
                         isLogged: true,
                         id: data.user.id,
+                        username: data.user.username,
                         email: data.user.email,
                         token: data.token,
-                    })
-                )
-                return data
+                    }),
+                );
+                return data;
             })
-            .then(function (data) {
-                console.log(data)
+            .then((data) => {
+                console.log(data);
 
-                isLogged()
-                showMessage(`Zalogowałeś się poprawnie jako ${data.user.email}`)
+                isLogged();
+                showMessage(`Zalogowałeś się poprawnie jako ${data.user.username}`);
             })
-            .catch(function (error) {
-                localStorage.removeItem('LogAppUser')
-                console.log(error)
-                showMessage(`Błąd logowania!`, true)
-            })
-    }
+            .catch((error) => {
+                localStorage.removeItem('LogAppUser');
+                console.log(error);
+                showMessage(`Błąd logowania!`, true);
+            });
+    };
 
     const handleOnPushPassword = (e) => {
-        setPassword(e.target.value)
-    }
+        setPassword(e.target.value);
+    };
 
     const handleOnClickLogin = (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
         if (isValidEmail) {
-            console.log('Wpisano poprawny email')
-            sendCredentials()
+            console.log('Wpisano poprawny email');
+            sendCredentials();
         } else {
-            console.log('Wpisano błędny email')
-            showMessage(`Wpisz poprawny email!`, true)
+            console.log('Wpisano błędny email');
+            showMessage(`Wpisz poprawny email!`, true);
         }
         // console.log(email, password, isValidEmail)
-    }
-
-    const isLogged = () => {
-        const isLogged = JSON.parse(localStorage.getItem('LogAppUser')).isLogged
-        // console.log('isLogged', isLogged)
-
-        return isLogged ? isLogged : false
-    }
-
-    const showMessage = (text, isAlert) => {
-        setMessageText(text)
-        setIsMessageAlert(isAlert)
-        setIsVisibleMessage(true)
-
-        // useEffect(() => {
-        const timer = setTimeout(() => {
-            setIsVisibleMessage(false)
-        }, 5000)
-        //     return () => clearTimeout(timer)
-        // }, [])
-    }
+    };
 
     return (
         <div className={styles.sectionLogin}>
             {isVisibleMessage ? <Message message={messageText} alert={isMessageAlert} /> : ''}
             <form className={styles.form} action="submit">
-                <label className={styles.label} htmlFor="login">
-                    Adres email
-                </label>
                 <input
                     type="email"
                     name="email"
                     onChange={handleOnPushEmail}
                     className={styles.input}
+                    placeholder="Adres email"
                 />
-                <label className={styles.label} htmlFor="password">
-                    Hasło
-                </label>
+
                 <input
                     type="password"
                     name="password"
                     onChange={handleOnPushPassword}
                     className={styles.input}
+                    placeholder="Hasło"
                 />
-                <button className={styles.button} onClick={handleOnClickLogin}>
+                <button className={styles.button} onClick={handleOnClickLogin} type="submit">
                     Logowanie
                 </button>
             </form>
@@ -130,7 +129,7 @@ const LoginPage = () => {
                 <ReturnButton />
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default LoginPage
+export default LoginPage;
