@@ -20,11 +20,11 @@ class RegisterAPI(generics.GenericAPIView):
         user_data = serializer.data
 
         user_email = EmailUser.objects.get(email=user_data['email'])
-        # user_name = User.objects.get(username=user_data['username'])
+        user_name = EmailUser.objects.get(username=user_data['username'])
 
 
-        # email_body = 'Hi ' + user_name.username + ', thanks for registering'
-        email_body = 'Hi, thanks for registering'
+        email_body = 'Hi ' + user_name.username + ', thanks for registering'
+        # email_body = 'Hi, thanks for registering'
 
         data = {
             'email_body': email_body,

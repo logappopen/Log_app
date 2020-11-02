@@ -1,73 +1,3 @@
-// @import '../Root/common.scss';
-// .section-login {
-//     position: relative;
-//     width: 95vw;
-//     margin: 10px auto;
-//     display: flex;
-//     align-items: center;
-//     flex-direction: column;
-//     &__form {
-//         margin: 0 auto;
-//     }
-//     &__nav {
-//         ul {
-//             // margin-top: 30px;
-//             list-style: none;
-//             text-align: center;
-//             a {
-//                 text-decoration: none;
-//                 color: $text-first-color;
-//                 cursor: pointer;
-//             }
-//         }
-//     }
-//     &__return-button {
-//         position: absolute;
-//         bottom: -50px;
-//         right: 0;
-//     }
-//     @media (orientation: landscape) and (min-width: 1024px) {
-//         &__nav {
-//             ul {
-//                 margin-top: 30px;
-//             }
-//         }
-//         &__return-button {
-//             bottom: -150px;
-//             right: 50px;
-//         }
-//     }
-// }
-// .login-form {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: flex-start;
-//     align-items: center;
-//     &__label {
-//         flex-basis: 30%;
-//         margin: 10px 1em;
-//         align-self: flex-start;
-//     }
-//     &__input {
-//         @include input;
-//     }
-//     &__button {
-//         @include button;
-//     }
-//     @media (orientation: landscape) and (min-width: 1024px) {
-//         width: 30%;
-//         &__label {
-//             font-size: $m-font-size;
-//         }
-//         // &__input {
-//         //     height: 20px;
-//         // }
-//     }
-// }
-
-// .valid-fail {
-//     border-bottom: 2px solid red;
-// }
 @import '../Root/common.scss';
 .sectionLogin {
     position: relative;
@@ -107,6 +37,7 @@
             right: 50px;
         }
     }
+  }
 }
 .form {
     display: flex;
@@ -127,4 +58,5 @@
             height: 50px;
         }
     }
+  }
 }
