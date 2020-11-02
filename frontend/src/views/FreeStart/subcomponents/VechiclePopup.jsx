@@ -1,4 +1,5 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
+import PropTypes from 'prop-types';
 
 import Modal from '../../../components/Modal/Modal';
 import { StoreContext } from '../../../store/StoreProvider';
@@ -21,7 +22,7 @@ const VechiclePopup = ({ isPopupOpen, hidePopup }) => {
         <Modal handleOnClose={hidePopup} isOpen={isPopupOpen}>
             <div className={styles.vechiclePopup}>
                 <form>
-                    <label>
+                    <label htmlFor="bus">
                         Bus 8 euro-palet
                         <input
                             onChange={handleOnChange}
@@ -31,7 +32,7 @@ const VechiclePopup = ({ isPopupOpen, hidePopup }) => {
                             value="bus"
                         />
                     </label>
-                    <label>
+                    <label htmlFor="solo">
                         Solo 15 euro-palet
                         <input
                             onChange={handleOnChange}
@@ -41,7 +42,7 @@ const VechiclePopup = ({ isPopupOpen, hidePopup }) => {
                             value="solo"
                         />
                     </label>
-                    <label>
+                    <label htmlFor="naczepa">
                         Naczepa 33 euro-palety
                         <input
                             onChange={handleOnChange}
@@ -59,4 +60,10 @@ const VechiclePopup = ({ isPopupOpen, hidePopup }) => {
         </Modal>
     );
 };
+
+VechiclePopup.propTypes = {
+    isPopupOpen: PropTypes.bool.isRequired,
+    hidePopup: PropTypes.func.isRequired,
+};
+
 export default VechiclePopup;
