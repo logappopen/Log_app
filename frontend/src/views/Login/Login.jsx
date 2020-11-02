@@ -52,6 +52,7 @@ const LoginPage = () => {
                     JSON.stringify({
                         isLogged: true,
                         id: data.user.id,
+                        username: data.user.username,
                         email: data.user.email,
                         token: data.token,
                     }),
@@ -62,7 +63,7 @@ const LoginPage = () => {
                 console.log(data);
 
                 isLogged();
-                showMessage(`Zalogowałeś się poprawnie jako ${data.user.email}`);
+                showMessage(`Zalogowałeś się poprawnie jako ${data.user.username}`);
             })
             .catch((error) => {
                 localStorage.removeItem('LogAppUser');

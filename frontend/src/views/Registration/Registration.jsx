@@ -15,42 +15,36 @@ const RegistrationPage = () => {
     };
 
     return (
-        <div className={styles['section-registration']}>
+        <div className={styles.wrapper}>
             <h1>Registration_Page</h1>
 
-            <form className={styles.registrationForm} onSubmit={handleRegistration}>
+            <form className={styles.form} onSubmit={handleRegistration}>
                 <input
-                    className={styles.registrationForm__input}
+                    className={styles.input}
                     onChange={(e) => setUsername(e.target.value)}
                     value={username}
                     placeholder="Username"
                 />
                 <input
-                    className={styles.registrationForm__input}
+                    className={styles.input}
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
                     placeholder="Email"
                 />
                 <input
-                    className={styles.registrationForm__input}
+                    className={styles.input}
                     onChange={(e) => setUserPassword(e.target.value)}
                     value={userPassword}
                     placeholder="Password"
                 />
-                <input
-                    className={styles['registrationForm__input--submitButton']}
-                    type="submit"
-                    value="Register"
-                />
+                <input className={styles.button} type="submit" value="Register" />
             </form>
-            <nav className={styles['section-registration__nav']}>
+            <nav className={styles.nav}>
                 <ul>
                     <NavLink to="/lost_password">Zapomniałem hasła...</NavLink>
                 </ul>
             </nav>
-            <div className={styles['section-registration__return-button']}>
-                <ReturnButton />
-            </div>
+            <ReturnButton />
         </div>
     );
 };

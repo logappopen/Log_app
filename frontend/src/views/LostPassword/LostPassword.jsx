@@ -31,29 +31,23 @@ const LostPasswordPage = () => {
     };
 
     return (
-        <div className={styles['section-lost-password']}>
-            <form className={styles[('section-lost-password__form', 'login-form')]} action="">
-                <label className={styles['login-form__label']} htmlFor="login">
-                    Wpisz adres eMail podany przy rejestarcji konta
+        <div className={styles.wrapper}>
+            <form className={styles.form} action="">
+                <label className={styles.label} htmlFor="email">
+                    Wpisz adres email podany przy rejestarcji konta
                     <input
                         type="email"
                         onChange={handleOnPushEmail}
                         value={emailValue}
-                        className={styles['login-form__input']}
+                        className={styles.input}
                     />
                 </label>
-                <p className={styles['section-lost-password__info']}>{viewMessage}</p>
-                <button
-                    className={styles['login-form__button']}
-                    onClick={handleOnClickLogin}
-                    type="submit"
-                >
+                <p className={styles.info}>{viewMessage}</p>
+                <button className={styles.button} onClick={handleOnClickLogin} type="submit">
                     Wyślij
                 </button>
             </form>
-            <div className={styles['section-lost-password__return-button']}>
-                <ReturnButton />
-            </div>
+            <ReturnButton />
         </div>
     );
 };

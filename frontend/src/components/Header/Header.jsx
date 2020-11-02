@@ -23,6 +23,10 @@ const Header = () => {
         e.preventDefault();
         setIsOpenMenu(!isOpenMenu);
     };
+    const handleCloseMenu = (e) => {
+        e.preventDefault();
+        setIsOpenMenu(false);
+    };
 
     return (
         <>
@@ -37,7 +41,7 @@ const Header = () => {
                     </div>
                     <ul
                         className={`${styles.menu} ${isOpenMenu ? styles.menuShow : ''}`}
-                        onClick={handleHamburgerClick}
+                        onClick={handleCloseMenu}
                     >
                         {menu}
                     </ul>

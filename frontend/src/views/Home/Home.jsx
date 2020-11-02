@@ -10,13 +10,13 @@ const Home = () => {
     return (
         <Router>
             <div className={styles.container}>
-                <div className={styles.container__header}>
+                <div className={styles.header}>
                     <Header />
                 </div>
-                <div className={styles.container__section}>
+                <div className={styles.section}>
                     <Main />
                 </div>
-                <div className={styles.containe__footer}>
+                <div className={styles.footer}>
                     <Footer />
                 </div>
             </div>

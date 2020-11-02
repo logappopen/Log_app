@@ -3,7 +3,7 @@ import styles from './Contact.module.scss';
 
 const ContactPage = () => {
     return (
-        <div className={styles['section-contact']}>
+        <div className={styles.wrapper}>
             <h1>Contact_Page</h1>
         </div>
     );

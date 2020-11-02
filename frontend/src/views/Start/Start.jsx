@@ -19,9 +19,9 @@ const StartPage = () => {
 
     return (
         <>
-            <div className={styles['section-start']}>
-                <nav className={styles[('section-start__nav', 'start-nav')]}>
-                    <ul className={styles['start-nav__menu']}>{menu}</ul>
+            <div className={styles.wrapper}>
+                <nav className={styles.nav}>
+                    <ul className={styles.link}>{menu}</ul>
                 </nav>
             </div>
         </>

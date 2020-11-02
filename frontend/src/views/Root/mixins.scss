@@ -31,8 +31,7 @@
         inset $topX $topY ($v * 6) lighten($color, 0),
         inset $topX * -1 $topY * -1 ($v * 6) darken($color, 0);
 
-    $in: $topX $topY ($v * 5) lighten($color, 0),
-        $topX * -1 $topY * -1 ($v * 3) darken($color, 0),
+    $in: $topX $topY ($v * 5) lighten($color, 0), $topX * -1 $topY * -1 ($v * 3) darken($color, 0),
         inset $topX $topY ($v * 6) lighten($color, 12),
         inset $topX/2 $topY/2 ($v) lighten($color, 12),
         inset $topX * -1 $topY * -1 ($v * 3) darken($color, 10);
@@ -91,4 +90,7 @@
     color: $text-first-color;
     padding: 12px;
     cursor: auto;
+    &::placeholder {
+        color: white;
+    }
 }
