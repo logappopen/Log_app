@@ -93,24 +93,21 @@ const LoginPage = () => {
         <div className={styles.sectionLogin}>
             {isVisibleMessage ? <Message message={messageText} alert={isMessageAlert} /> : ''}
             <form className={styles.form} action="submit">
-                <label className={styles.label} htmlFor="email">
-                    Adres email
-                    <input
-                        type="email"
-                        name="email"
-                        onChange={handleOnPushEmail}
-                        className={styles.input}
-                    />
-                </label>
-                <label className={styles.label} htmlFor="password">
-                    Hasło
-                    <input
-                        type="password"
-                        name="password"
-                        onChange={handleOnPushPassword}
-                        className={styles.input}
-                    />
-                </label>
+                <input
+                    type="email"
+                    name="email"
+                    onChange={handleOnPushEmail}
+                    className={styles.input}
+                    placeholder="Adres email"
+                />
+
+                <input
+                    type="password"
+                    name="password"
+                    onChange={handleOnPushPassword}
+                    className={styles.input}
+                    placeholder="Hasło"
+                />
                 <button className={styles.button} onClick={handleOnClickLogin} type="submit">
                     Logowanie
                 </button>
