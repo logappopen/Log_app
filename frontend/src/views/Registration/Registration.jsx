@@ -13,15 +13,46 @@ const RegistrationPage = () => {
     const [userPassword, setUserPassword] = useStateWithLabel('userPassword', '');
     const [userPasswordRepeat, setUserPasswordRepeat] = useStateWithLabel('userPasswordRepeat', '');
 
+    const checkFrom = () => {
+        const errors = [];
+
+        if (!email) {
+            console.log('brak email-a');
+            errors.push(false);
+        }
+        if (!username) {
+            console.log('brak username');
+            errors.push(false);
+        }
+        if (!userPassword) {
+            console.log('brak hasła');
+            errors.push(false);
+        }
+        if (!userPasswordRepeat) {
+            console.log('brak powtórzenia hasła');
+            errors.push(false);
+        }
+
+        if (userPassword !== userPasswordRepeat) {
+            console.log('hasła się nie zgadzają');
+            errors.push(false);
+        }
+        if (!checkEmail(email)) {
+            console.log('email jest niepoprawny');
+            errors.push(false);
+        }
+
+        return !errors.length;
+    };
+
     const handleRegistration = (e) => {
         e.preventDefault();
-        console.log('Zarejestrowano');
-        // Pola mamy w state, kwestia wysłania ich w odpowiednie miejsce
+        checkFrom();
     };
 
     return (
         <div className={styles.wrapper}>
-            <h1>Registration_Page</h1>
+            <h1>Zarejestruj się</h1>
 
             <form className={styles.form} onSubmit={handleRegistration}>
                 <input
@@ -44,7 +75,7 @@ const RegistrationPage = () => {
                 />
                 <input
                     className={styles.input}
-                    onChange={(e) => setUserPassword(e.target.value)}
+                    onChange={(e) => setUserPasswordRepeat(e.target.value)}
                     value={userPasswordRepeat}
                     placeholder="Powtórz hasło"
                 />
