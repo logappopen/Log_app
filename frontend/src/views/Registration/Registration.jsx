@@ -11,6 +11,7 @@ const RegistrationPage = () => {
     const [username, setUsername] = useStateWithLabel('username', '');
     const [email, setEmail] = useStateWithLabel('email', '');
     const [userPassword, setUserPassword] = useStateWithLabel('userPassword', '');
+    const [userPasswordRepeat, setUserPasswordRepeat] = useStateWithLabel('userPasswordRepeat', '');
 
     const handleRegistration = (e) => {
         e.preventDefault();
@@ -39,7 +40,13 @@ const RegistrationPage = () => {
                     className={styles.input}
                     onChange={(e) => setUserPassword(e.target.value)}
                     value={userPassword}
-                    placeholder="Password"
+                    placeholder="Hasło"
+                />
+                <input
+                    className={styles.input}
+                    onChange={(e) => setUserPassword(e.target.value)}
+                    value={userPasswordRepeat}
+                    placeholder="Powtórz hasło"
                 />
                 <input className={styles.button} type="submit" value="Rejestracja" />
             </form>
