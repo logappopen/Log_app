@@ -57,24 +57,28 @@ const RegistrationPage = () => {
             <form className={styles.form} onSubmit={handleRegistration}>
                 <input
                     className={styles.input}
+                    type="text"
                     onChange={(e) => setUsername(e.target.value)}
                     value={username}
                     placeholder="Username"
                 />
                 <input
                     className={styles.input}
+                    type="email"
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
                     placeholder="Email"
                 />
                 <input
                     className={styles.input}
+                    type="password"
                     onChange={(e) => setUserPassword(e.target.value)}
                     value={userPassword}
                     placeholder="Hasło"
                 />
                 <input
                     className={styles.input}
+                    type="password"
                     onChange={(e) => setUserPasswordRepeat(e.target.value)}
                     value={userPasswordRepeat}
                     placeholder="Powtórz hasło"
