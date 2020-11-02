@@ -1,43 +1,59 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
+
 import Modal from "../../../components/Modal/Modal";
 import { StoreContext } from "../../../store/StoreProvider";
 
 import styles from "./VechiclePopup.module.scss";
 
 const VechiclePopup = ({ isPopupOpen, hidePopup }) => {
-  const VECHICLES_DATA = useContext(StoreContext);
+  const { setTakeVechicle, takeVechicleData } = useContext(StoreContext);
 
-  // const sendVechicle = (data) => {
-  //   VECHICLES_DATA.forEach((vechicle) => {
-  //     if (vechicle === data) {
-  //       console.log(data);
-  //       return vechicle;
-  //     }
-  //   });
-  // };
-
-  const selectVechicle = (event) => {
-    console.log(event);
+  const handlOnSendData = () => {
+    takeVechicleData();
     hidePopup();
+  };
+
+  const handleOnChange = (event) => {
+    setTakeVechicle(event.target.value);
   };
 
   return (
     <Modal handleOnClose={hidePopup} isOpen={isPopupOpen}>
       <div className={styles["vechiclePopup"]}>
-        <form onSubmit={selectVechicle}>
+        <form>
           <label>
             Bus 8 euro-palet
-            <input type="radio" id="bus" name="bus" value="bus" />
+            <input
+              onChange={handleOnChange}
+              type="radio"
+              id="bus"
+              name="bus"
+              value="bus"
+            />
           </label>
           <label>
             Solo 15 euro-palet
-            <input type="radio" id="solo" name="solo" value="solo" />
+            <input
+              onChange={handleOnChange}
+              type="radio"
+              id="solo"
+              name="solo"
+              value="solo"
+            />
           </label>
           <label>
             Naczepa 33 euro-palety
-            <input type="radio" id="naczepa" name="naczepa" value="naczepa" />
+            <input
+              onChange={handleOnChange}
+              type="radio"
+              id="naczepa"
+              name="naczepa"
+              value="naczepa"
+            />
           </label>
-          <button type="submit">Wybierz</button>
+          <button onClick={handlOnSendData} type="button">
+            Wybierz
+          </button>
         </form>
       </div>
     </Modal>
