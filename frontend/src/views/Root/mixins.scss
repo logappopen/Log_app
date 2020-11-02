@@ -99,12 +99,13 @@
   $inset: false,
   $distance: 2px
 ) {
-  margin: 20px 0;
-  padding: 10px 20px;
-  border: none;
-  color: $text-first-color;
-  background-color: $basic-color;
-  @include neustyle($color, $hover, $direction, $inset, $distance);
-  font-size: $m-font-size;
-  transition: 0.3s;
+    @include neustyle($color, $hover, $direction, $inset, $distance);
+    flex-basis: 90%;
+    // height: 20px;
+    line-height: 1.3em;
+    background: transparent;
+    margin: 0 1.5em;
+    color: $text-first-color;
+    padding: 12px;
+    cursor: auto;
 }
