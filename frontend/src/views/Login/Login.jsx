@@ -7,43 +7,44 @@ import ReturnButton from '../../components/ReturnButton/ReturnButton';
 import Message from '../../components/Message/Message';
 
 const LoginPage = () => {
-    const [email, setEmail] = useState('');
-    const [isValidEmail, setIsValidEmail] = useState(false);
-    const [password, setPassword] = useState('');
-    const [isVisibleMessage, setIsVisibleMessage] = useState(false);
-    const [messageText, setMessageText] = useState('');
-    const [isMessageAlert, setIsMessageAlert] = useState(false);
+    const [email, setEmail] = useState({ email: '' });
+    const [isValidEmail, setIsValidEmail] = useState({ isValidemail: false });
+    const [password, setPassword] = useState({ password: '' });
+    const [isVisibleMessage, setIsVisibleMessage] = useState({ isVisibleMessage: false });
+    const [messageText, setMessageText] = useState({ messageText: '' });
+    const [isMessageAlert, setIsMessageAlert] = useState({ isMessageAlert: false });
+
     const handleOnPushEmail = (e) => {
         // don't remember from where i copied this code, but this works.
         const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
         if (re.test(e.target.value)) {
             // this is a valid email address
-            setIsValidEmail(true);
+            setIsValidEmail({ isValidemail: true });
         } else {
             // invalid email, maybe show an error to the user.
-            setIsValidEmail(false);
+            setIsValidEmail({ isValidemail: false });
         }
-        setEmail(e.target.value);
+        setEmail({ email: e.target.value });
     };
     const isLogged = () => {
         return JSON.parse(localStorage.getItem('LogAppUser')) || false;
     };
 
     const showMessage = (text, isAlert) => {
-        setMessageText(text);
-        setIsMessageAlert(isAlert);
-        setIsVisibleMessage(true);
+        setMessageText({ messageText: text });
+        setIsMessageAlert({ isMessageAlert: isAlert });
+        setIsVisibleMessage({ isVisibleMessage: true });
 
         setTimeout(() => {
-            setIsVisibleMessage(false);
+            setIsVisibleMessage({ isVisibleMessage: false });
         }, 5000);
     };
     const sendCredentials = () => {
         return axios
             .post(process.env.REACT_APP_API_LOGIN_URL, {
-                email,
-                password,
+                email: email.email,
+                password: password.password,
             })
             .then(({ data }) => {
                 // console.log(data)
@@ -73,7 +74,7 @@ const LoginPage = () => {
     };
 
     const handleOnPushPassword = (e) => {
-        setPassword(e.target.value);
+        setPassword({ password: e.target.value });
     };
 
     const handleOnClickLogin = (e) => {
@@ -91,7 +92,11 @@ const LoginPage = () => {
 
     return (
         <div className={styles.sectionLogin}>
-            {isVisibleMessage ? <Message message={messageText} alert={isMessageAlert} /> : ''}
+            {isVisibleMessage.isVisibleMessage ? (
+                <Message message={messageText.messageText} alert={isMessageAlert.isMessageAlert} />
+            ) : (
+                ''
+            )}
             <form className={styles.form} action="submit">
                 <input
                     type="email"
