@@ -11,7 +11,7 @@ const RegistrationPage = () => {
     const [username, setUsername] = useStateWithLabel('username', '');
     const [email, setEmail] = useStateWithLabel('email', '');
     const [userPassword, setUserPassword] = useStateWithLabel('userPassword', '');
-    const [userPasswordRepeat, setUserPasswordRepeat] = useStateWithLabel('userPasswordRepeat', '');
+    // const [userPasswordRepeat, setUserPasswordRepeat] = useStateWithLabel('userPasswordRepeat', '');
 
     const checkFrom = () => {
         const errors = [];
@@ -28,21 +28,54 @@ const RegistrationPage = () => {
             console.log('brak hasła');
             errors.push(false);
         }
-        if (!userPasswordRepeat) {
-            console.log('brak powtórzenia hasła');
-            errors.push(false);
-        }
+        // if (!userPasswordRepeat) {
+        //     console.log('brak powtórzenia hasła');
+        //     errors.push(false);
+        // }
 
-        if (userPassword !== userPasswordRepeat) {
-            console.log('hasła się nie zgadzają');
-            errors.push(false);
-        }
+        // if (userPassword !== userPasswordRepeat) {
+        //     console.log('hasła się nie zgadzają');
+        //     errors.push(false);
+        // }
         if (!checkEmail(email)) {
             console.log('email jest niepoprawny');
             errors.push(false);
         }
 
         return !errors.length;
+    };
+
+    const sendCredentials = () => {
+        return axios
+            .post(process.env.REACT_APP_API_LOGIN_URL, {
+                email,
+                password,
+            })
+            .then(({ data }) => {
+                // console.log(data)
+                localStorage.setItem(
+                    'LogAppUser',
+                    JSON.stringify({
+                        isLogged: true,
+                        id: data.user.id,
+                        username: data.user.username,
+                        email: data.user.email,
+                        token: data.token,
+                    }),
+                );
+                return data;
+            })
+            .then((data) => {
+                console.log(data);
+
+                isLogged();
+                showMessage(`Zalogowałeś się poprawnie jako ${data.user.username}`);
+            })
+            .catch((error) => {
+                localStorage.removeItem('LogAppUser');
+                console.log(error);
+                showMessage(`Błąd logowania!`, true);
+            });
     };
 
     const handleRegistration = (e) => {
@@ -76,13 +109,13 @@ const RegistrationPage = () => {
                     value={userPassword}
                     placeholder="Hasło"
                 />
-                <input
+                {/* <input
                     className={styles.input}
                     type="password"
                     onChange={(e) => setUserPasswordRepeat(e.target.value)}
                     value={userPasswordRepeat}
                     placeholder="Powtórz hasło"
-                />
+                /> */}
                 <input className={styles.button} type="submit" value="Rejestracja" />
             </form>
             <nav className={styles.nav}>
