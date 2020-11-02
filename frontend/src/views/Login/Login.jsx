@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useDebugValue } from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import styles from './Login.module.scss';
@@ -7,12 +7,19 @@ import ReturnButton from '../../components/ReturnButton/ReturnButton';
 import Message from '../../components/Message/Message';
 
 const LoginPage = () => {
-    const [email, setEmail] = useState({ email: '' });
-    const [isValidEmail, setIsValidEmail] = useState({ isValidemail: false });
-    const [password, setPassword] = useState({ password: '' });
-    const [isVisibleMessage, setIsVisibleMessage] = useState({ isVisibleMessage: false });
-    const [messageText, setMessageText] = useState({ messageText: '' });
-    const [isMessageAlert, setIsMessageAlert] = useState({ isMessageAlert: false });
+    // Function to show value name in devTools
+    function useStateWithLabel(name, initialValue) {
+        const [value, setValue] = useState(initialValue);
+        useDebugValue(`${name}: ${value}`);
+        return [value, setValue];
+    }
+
+    const [email, setEmail] = useStateWithLabel('email', '');
+    const [isValidEmail, setIsValidEmail] = useStateWithLabel('isValidemail', false);
+    const [password, setPassword] = useStateWithLabel('password', '');
+    const [isVisibleMessage, setIsVisibleMessage] = useStateWithLabel('isVisibleMessage', false);
+    const [messageText, setMessageText] = useStateWithLabel('messageText', '');
+    const [isMessageAlert, setIsMessageAlert] = useStateWithLabel('isMessageAlert', false);
 
     const handleOnPushEmail = (e) => {
         // don't remember from where i copied this code, but this works.
@@ -20,31 +27,31 @@ const LoginPage = () => {
 
         if (re.test(e.target.value)) {
             // this is a valid email address
-            setIsValidEmail({ isValidemail: true });
+            setIsValidEmail(true);
         } else {
             // invalid email, maybe show an error to the user.
-            setIsValidEmail({ isValidemail: false });
+            setIsValidEmail(false);
         }
-        setEmail({ email: e.target.value });
+        setEmail(e.target.value);
     };
     const isLogged = () => {
         return JSON.parse(localStorage.getItem('LogAppUser')) || false;
     };
 
     const showMessage = (text, isAlert) => {
-        setMessageText({ messageText: text });
-        setIsMessageAlert({ isMessageAlert: isAlert });
-        setIsVisibleMessage({ isVisibleMessage: true });
+        setMessageText(text);
+        setIsMessageAlert(isAlert);
+        setIsVisibleMessage(true);
 
         setTimeout(() => {
-            setIsVisibleMessage({ isVisibleMessage: false });
+            setIsVisibleMessage(false);
         }, 5000);
     };
     const sendCredentials = () => {
         return axios
             .post(process.env.REACT_APP_API_LOGIN_URL, {
-                email: email.email,
-                password: password.password,
+                email,
+                password,
             })
             .then(({ data }) => {
                 // console.log(data)
@@ -74,7 +81,7 @@ const LoginPage = () => {
     };
 
     const handleOnPushPassword = (e) => {
-        setPassword({ password: e.target.value });
+        setPassword(e.target.value);
     };
 
     const handleOnClickLogin = (e) => {
@@ -92,11 +99,7 @@ const LoginPage = () => {
 
     return (
         <div className={styles.sectionLogin}>
-            {isVisibleMessage.isVisibleMessage ? (
-                <Message message={messageText.messageText} alert={isMessageAlert.isMessageAlert} />
-            ) : (
-                ''
-            )}
+            {isVisibleMessage ? <Message message={messageText} alert={isMessageAlert} /> : ''}
             <form className={styles.form} action="submit">
                 <input
                     type="email"
