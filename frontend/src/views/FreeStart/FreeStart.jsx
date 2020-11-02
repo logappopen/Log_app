@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './FreeStart.module.scss';
 
+import VechicleDetails from './subcomponents/VechicleDetails';
 import ReturnButton from '../../components/ReturnButton/ReturnButton';
 
 const FreeStartPage = () => {
@@ -12,9 +13,11 @@ const FreeStartPage = () => {
                 zapisywać swoją pracę.
             </p>
             <div className={styles.main}>
-                <div className={styles.loadDetails} />
-                <div className={styles.infoDetails} />
-                <div className={styles.vechicleDetails} />
+                <div className={styles.vechicleDetails}>
+                    <VechicleDetails />
+                </div>
+                <div className={styles.loadDetails}></div>
+                <div className={styles.infoDetails}></div>
             </div>
             <div className={styles.returnButton}>
                 <ReturnButton />
