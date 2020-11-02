@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './Registration.module.scss';
+
+import useStateWithLabel from '../../helpers/UseStateWhitLabel';
+import checkEmail from '../../helpers/CheckEmail';
 import ReturnButton from '../../components/ReturnButton/ReturnButton';
+import Message from '../../components/Message/Message';
 
 const RegistrationPage = () => {
-    const [username, setUsername] = useState('');
-    const [email, setEmail] = useState('');
-    const [userPassword, setUserPassword] = useState('');
+    const [username, setUsername] = useStateWithLabel('username', '');
+    const [email, setEmail] = useStateWithLabel('email', '');
+    const [userPassword, setUserPassword] = useStateWithLabel('userPassword', '');
 
     const handleRegistration = (e) => {
         e.preventDefault();
