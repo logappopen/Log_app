@@ -1,19 +1,13 @@
-import React, { useState, useDebugValue } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import styles from './Login.module.scss';
 
+import useStateWithLabel from '../../helpers/UseStateWhitLabel';
 import ReturnButton from '../../components/ReturnButton/ReturnButton';
 import Message from '../../components/Message/Message';
 
 const LoginPage = () => {
-    // Function to show value name in devTools
-    function useStateWithLabel(name, initialValue) {
-        const [value, setValue] = useState(initialValue);
-        useDebugValue(`${name}: ${value}`);
-        return [value, setValue];
-    }
-
     const [email, setEmail] = useStateWithLabel('email', '');
     const [isValidEmail, setIsValidEmail] = useStateWithLabel('isValidemail', false);
     const [password, setPassword] = useStateWithLabel('password', '');
