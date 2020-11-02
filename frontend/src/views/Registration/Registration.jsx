@@ -68,7 +68,7 @@ const RegistrationPage = () => {
             })
             .then(({ data }) => {
                 console.log(data);
-                showMessage(`Zarejestrowałeś się poprawnie jako ${data.user.username}.`);
+                showMessage(`Zarejestrowałeś się poprawnie jako ${data.user.username}`);
             })
             .catch((error) => {
                 console.log(error);
