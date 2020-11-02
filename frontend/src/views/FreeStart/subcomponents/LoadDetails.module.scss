@@ -1,0 +1,8 @@
+@import '../../Root/common.scss';
+
+.loadDetails {
+    // margin: 100px;
+    button {
+        @include button;
+    }
+}

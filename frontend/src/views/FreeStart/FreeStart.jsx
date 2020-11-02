@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './FreeStart.module.scss';
 
 import VechicleDetails from './subcomponents/VechicleDetails';
+import LoadDetails from './subcomponents/LoadsDetails';
 import ReturnButton from '../../components/ReturnButton/ReturnButton';
 
 const FreeStartPage = () => {
@@ -17,7 +18,9 @@ const FreeStartPage = () => {
                     <VechicleDetails />
                 </div>
                 <div className={styles.loadDetails}></div>
-                <div className={styles.infoDetails}></div>
+                <div className={styles.infoDetails}>
+                    <LoadDetails />
+                </div>
             </div>
             <div className={styles.returnButton}>
                 <ReturnButton />
