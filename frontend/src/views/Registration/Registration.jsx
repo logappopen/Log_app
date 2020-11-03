@@ -73,8 +73,15 @@ const RegistrationPage = () => {
             })
             .catch((error) => {
                 console.log(error);
-                console.log(error.response);
-                showMessage(`Błąd rejestracji!`, true);
+                console.log(error.response.data);
+
+                const errorsMsg = [`Wystąpiły błędy w rejestracji:`];
+                console.log(typeof error.response.data);
+
+                Object.keys(error.response.data).map((v) => {
+                    return errorsMsg.push(error.response.data[v]);
+                });
+                showMessage(errorsMsg, true);
             });
     };
 
