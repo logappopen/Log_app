@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import styles from './Registration.module.scss';
@@ -14,10 +14,10 @@ const RegistrationPage = () => {
     const [userPassword, setUserPassword] = useStateWithLabel('userPassword', '');
     const [userPasswordRepeat, setUserPasswordRepeat] = useStateWithLabel('userPasswordRepeat', '');
     const [isVisibleMessage, setIsVisibleMessage] = useStateWithLabel('isVisibleMessage', false);
-    const [messageText, setMessageText] = useStateWithLabel('messageText', '');
+    const [messageText, setMessageText] = useStateWithLabel('messageText', []);
     const [isMessageAlert, setIsMessageAlert] = useStateWithLabel('isMessageAlert', false);
 
-    const showMessage = (text, isAlert) => {
+    const showMessage = (text = messageText, isAlert) => {
         setMessageText(text);
         setIsMessageAlert(isAlert);
         setIsVisibleMessage(true);
@@ -29,34 +29,35 @@ const RegistrationPage = () => {
 
     const checkFrom = () => {
         const errors = [];
+        const message = [];
 
         if (!email) {
-            console.log('brak email-a');
+            message.push('Brak email-a');
             errors.push(false);
         }
         if (!username) {
-            console.log('brak username');
+            message.push('Brak username');
             errors.push(false);
         }
         if (!userPassword) {
-            console.log('brak hasła');
+            message.push('Brak hasła');
             errors.push(false);
         }
         if (!userPasswordRepeat) {
-            console.log('brak powtórzenia hasła');
+            message.push('Brak powtórzenia hasła');
             errors.push(false);
         }
 
         if (userPassword !== userPasswordRepeat) {
-            console.log('hasła się nie zgadzają');
+            message.push('Hasła nie są jednakowe');
             errors.push(false);
         }
         if (!checkEmail(email)) {
-            console.log('email jest niepoprawny');
+            message.push('Email jest niepoprawny');
             errors.push(false);
         }
 
-        return !errors.length;
+        return [!errors.length, message];
     };
 
     const sendCredentials = () => {
@@ -79,10 +80,10 @@ const RegistrationPage = () => {
 
     const handleRegistration = (e) => {
         e.preventDefault();
-        if (checkFrom()) {
+        if (checkFrom()[0]) {
             sendCredentials();
         } else {
-            showMessage(`Źle wypełniony formularz!`, true);
+            showMessage(checkFrom()[1], true);
         }
     };
 
