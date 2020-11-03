@@ -16,7 +16,8 @@ Message.defaultProps = {
 };
 
 Message.propTypes = {
-    message: PropTypes.node.isRequired,
+    message: PropTypes.oneOfType([PropTypes.string, PropTypes.arrayOf(PropTypes.string)])
+        .isRequired,
     alert: PropTypes.bool,
 };
 
