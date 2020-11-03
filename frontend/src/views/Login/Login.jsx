@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
+import { trackPromise } from 'react-promise-tracker';
 import styles from './Login.module.scss';
 
 import useStateWithLabel from '../../helpers/UseStateWhitLabel';
@@ -34,41 +35,42 @@ const LoginPage = () => {
         }, 5000);
     };
     const sendCredentials = () => {
-        return axios
-            .post(process.env.REACT_APP_API_LOGIN_URL, {
-                email,
-                password,
-            })
-            .then(({ data }) => {
-                // console.log(data)
-                localStorage.setItem(
-                    'LogAppUser',
-                    JSON.stringify({
-                        isLogged: true,
-                        id: data.user.id,
-                        username: data.user.username,
-                        email: data.user.email,
-                        token: data.token,
-                    }),
-                );
-                return data;
-            })
-            .then((data) => {
-                console.log(data);
+        trackPromise(
+            axios
+                .post(process.env.REACT_APP_API_LOGIN_URL, {
+                    email,
+                    password,
+                })
+                .then(({ data }) => {
+                    // console.log(data)
+                    localStorage.setItem(
+                        'LogAppUser',
+                        JSON.stringify({
+                            isLogged: true,
+                            id: data.user.id,
+                            username: data.user.username,
+                            email: data.user.email,
+                            token: data.token,
+                        }),
+                    );
+                    return data;
+                })
+                .then((data) => {
+                    console.log(data);
 
-                isLogged();
-                showMessage(`Zalogowałeś się poprawnie jako ${data.user.username}`);
-            })
-            .catch((error) => {
-                localStorage.removeItem('LogAppUser');
-                const errorsMsg = [`Wystąpiły błędy podczas logowania:`];
-                console.log(typeof error.response.data);
+                    isLogged();
+                    showMessage(`Zalogowałeś się poprawnie jako ${data.user.username}`);
+                })
+                .catch((error) => {
+                    localStorage.removeItem('LogAppUser');
+                    const errorsMsg = [`Wystąpiły błędy podczas logowania:`];
 
-                Object.keys(error.response.data).map((v) => {
-                    return errorsMsg.push(error.response.data[v]);
-                });
-                showMessage(errorsMsg, true);
-            });
+                    Object.keys(error.response.data).map((v) => {
+                        return errorsMsg.push(error.response.data[v][0]);
+                    });
+                    showMessage(errorsMsg, true);
+                }),
+        );
     };
 
     const handleOnPushPassword = (e) => {
@@ -95,6 +97,7 @@ const LoginPage = () => {
     return (
         <div className={styles.sectionLogin}>
             {isVisibleMessage ? <Message message={messageText} alert={isMessageAlert} /> : ''}
+
             <form className={styles.form} action="submit">
                 <input
                     type="email"
