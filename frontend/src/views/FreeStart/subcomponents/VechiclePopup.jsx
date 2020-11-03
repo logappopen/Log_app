@@ -29,7 +29,7 @@ const VechiclePopup = ({ isPopupOpen, hidePopup }) => {
                             type="radio"
                             id="bus"
                             name="vehicle"
-                            value="bus"
+                            value="BUS"
                         />
                     </label>
                     <label htmlFor="solo">
@@ -39,7 +39,7 @@ const VechiclePopup = ({ isPopupOpen, hidePopup }) => {
                             type="radio"
                             id="solo"
                             name="vehicle"
-                            value="solo"
+                            value="SOLO"
                         />
                     </label>
                     <label htmlFor="naczepa">
@@ -49,7 +49,7 @@ const VechiclePopup = ({ isPopupOpen, hidePopup }) => {
                             type="radio"
                             id="naczepa"
                             name="vehicle"
-                            value="naczepa"
+                            value="NACZEPA"
                         />
                     </label>
                     <button onClick={handlOnSendData} type="button">
