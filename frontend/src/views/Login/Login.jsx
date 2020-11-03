@@ -61,8 +61,13 @@ const LoginPage = () => {
             })
             .catch((error) => {
                 localStorage.removeItem('LogAppUser');
-                console.log(error);
-                showMessage(`Błąd logowania!`, true);
+                const errorsMsg = [`Wystąpiły błędy podczas logowania:`];
+                console.log(typeof error.response.data);
+
+                Object.keys(error.response.data).map((v) => {
+                    return errorsMsg.push(error.response.data[v]);
+                });
+                showMessage(errorsMsg, true);
             });
     };
 
@@ -73,14 +78,18 @@ const LoginPage = () => {
     const handleOnClickLogin = (e) => {
         e.preventDefault();
 
+        const errorsMsg = [`Wypełnij poprawnie formularz:`];
+
         if (isValidEmail) {
             console.log('Wpisano poprawny email');
             sendCredentials();
         } else {
             console.log('Wpisano błędny email');
-            showMessage(`Wpisz poprawny email!`, true);
+            errorsMsg.push(`Wpisz poprawny email`);
         }
-        // console.log(email, password, isValidEmail)
+
+        if (!password.length) errorsMsg.push(`Wpisz hasło.`);
+        showMessage(errorsMsg, true);
     };
 
     return (
