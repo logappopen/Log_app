@@ -8,12 +8,19 @@ const VECHICLES_DATA = [
     { name: 'SOLO', dim: [1200, 250, 250] },
     { name: 'NACZEPA', dim: [1360, 250, 275] },
 ];
+
+const LOADS_DATA = [];
 export const StoreContext = createContext(null);
 
 const StoreProvider = (props) => {
     // Vehicles
     const [vechicleData, setVechicleData] = useStateWithLabel('vechicleData', null);
     const [takeVechicle, setTakeVechicle] = useStateWithLabel('takeVechicle', false);
+
+    // Load
+
+    const [loadData, setLoadData] = useStateWithLabel('loadData', null);
+    const [takeLoad, setTakeLoad] = useStateWithLabel('takeLoad', false);
 
     // Menu
     const [isOpenMenu, setIsOpenMenu] = useStateWithLabel('isOpenMenu', false);
@@ -70,6 +77,10 @@ const StoreProvider = (props) => {
                 takeVechicleData,
                 takeVechicle,
                 setTakeVechicle,
+                loadData,
+                setLoadData,
+                takeLoad,
+                setTakeLoad,
                 userData,
                 setUserData,
                 showMessage,
