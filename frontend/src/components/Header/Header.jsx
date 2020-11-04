@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './Header.module.scss';
 import { StoreContext } from '../../store/StoreProvider';
+import LoginInfo from '../LoginInfo/LoginInfo';
 
 const Header = () => {
     const { routerLinks, isOpenMenu, setIsOpenMenu } = useContext(StoreContext);
@@ -27,7 +28,7 @@ const Header = () => {
         <>
             <div className={styles.header}>
                 <div className={styles.logo} />
-
+                <LoginInfo />
                 <nav className={styles.nav}>
                     <div className={styles.hamburger} onClick={handleHamburgerClick}>
                         <div className={`${styles.bar1} ${isOpenMenu ? styles.bar1Change : ''}`} />
