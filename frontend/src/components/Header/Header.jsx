@@ -1,17 +1,31 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './Header.module.scss';
-
-const list = [
-    { name: 'start', path: '/', exact: true },
-    { name: 'kontakt', path: '/contact' },
-    { name: 'pomoc', path: '/help' },
-];
+import useStateWithLabel from '../../helpers/UseStateWhitLabel';
+import { StoreContext } from '../../store/StoreProvider';
+import LoginInfo from '../LoginInfo/LoginInfo';
 
 const Header = () => {
-    const [isOpenMenu, setIsOpenMenu] = useState(false);
+    const { routerLinks, isOpenMenu, setIsOpenMenu } = useContext(StoreContext);
 
-    const menu = list.map((item) => (
+    // eslint-disable-next-line no-unused-vars
+    const [clickedOutsideMenu, setClickedOutsideMenu] = useStateWithLabel('clickedOutside', false);
+
+    const myRef = useRef();
+
+    const handleClickOutsideMenu = (e) => {
+        if (!myRef.current.contains(e.target)) {
+            setClickedOutsideMenu(true);
+            setIsOpenMenu(false);
+        }
+    };
+
+    useEffect(() => {
+        document.addEventListener('mousedown', handleClickOutsideMenu);
+        return () => document.removeEventListener('mousedown', handleClickOutsideMenu);
+    });
+
+    const menu = routerLinks.map((item) => (
         <li key={item.name}>
             <NavLink to={item.path} exact={item.exact ? item.exact : false}>
                 {item.name}
@@ -22,6 +36,7 @@ const Header = () => {
     const handleHamburgerClick = (e) => {
         e.preventDefault();
         setIsOpenMenu(!isOpenMenu);
+        setClickedOutsideMenu(false);
     };
     const handleCloseMenu = (e) => {
         e.preventDefault();
@@ -32,8 +47,8 @@ const Header = () => {
         <>
             <div className={styles.header}>
                 <div className={styles.logo} />
-
-                <nav className={styles.nav}>
+                <LoginInfo />
+                <nav className={styles.nav} ref={myRef}>
                     <div className={styles.hamburger} onClick={handleHamburgerClick}>
                         <div className={`${styles.bar1} ${isOpenMenu ? styles.bar1Change : ''}`} />
                         <div className={`${styles.bar2} ${isOpenMenu ? styles.bar2Change : ''}`} />

@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import StoreProvider, { StoreContext } from '../../../store/StoreProvider';
+import { StoreContext } from '../../../store/StoreProvider';
 
 import VechiclePopup from './VechiclePopup';
 
@@ -23,14 +23,12 @@ const VechicleDetails = () => {
     };
 
     return (
-        <div className={styles['vechicleDetails']}>
+        <div className={styles.vechicleDetails}>
             <button onClick={showPopup}>
                 {takeVechicle === false ? 'Dodaj pojazd' : 'Zmień pojazd'}
             </button>
-            <StoreProvider>
-                <VechiclePopup hidePopup={hidePopup} isPopupOpen={isPopupOpen} />
-                <VechicleInfo />
-            </StoreProvider>
+            <VechiclePopup hidePopup={hidePopup} isPopupOpen={isPopupOpen} />
+            <VechicleInfo />
         </div>
     );
 };

@@ -1,20 +1,20 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
+import { trackPromise } from 'react-promise-tracker';
 import styles from './Login.module.scss';
 
+import { StoreContext } from '../../store/StoreProvider';
 import useStateWithLabel from '../../helpers/UseStateWhitLabel';
 import checkEmail from '../../helpers/CheckEmail';
 import ReturnButton from '../../components/ReturnButton/ReturnButton';
-import Message from '../../components/Message/Message';
 
 const LoginPage = () => {
     const [email, setEmail] = useStateWithLabel('email', '');
     const [isValidEmail, setIsValidEmail] = useStateWithLabel('isValidemail', false);
     const [password, setPassword] = useStateWithLabel('password', '');
-    const [isVisibleMessage, setIsVisibleMessage] = useStateWithLabel('isVisibleMessage', false);
-    const [messageText, setMessageText] = useStateWithLabel('messageText', '');
-    const [isMessageAlert, setIsMessageAlert] = useStateWithLabel('isMessageAlert', false);
+
+    const { setUserData, showMessage } = useContext(StoreContext);
 
     const handleOnPushEmail = (e) => {
         setIsValidEmail(checkEmail(e.target.value));
@@ -24,51 +24,59 @@ const LoginPage = () => {
         return JSON.parse(localStorage.getItem('LogAppUser')) || false;
     };
 
-    const showMessage = (text, isAlert) => {
-        setMessageText(text);
-        setIsMessageAlert(isAlert);
-        setIsVisibleMessage(true);
-
-        setTimeout(() => {
-            setIsVisibleMessage(false);
-        }, 5000);
-    };
     const sendCredentials = () => {
-        return axios
-            .post(process.env.REACT_APP_API_LOGIN_URL, {
-                email,
-                password,
-            })
-            .then(({ data }) => {
-                // console.log(data)
-                localStorage.setItem(
-                    'LogAppUser',
-                    JSON.stringify({
-                        isLogged: true,
-                        id: data.user.id,
+        trackPromise(
+            axios
+                .post(process.env.REACT_APP_API_LOGIN_URL, {
+                    email,
+                    password,
+                })
+                .then(({ data }) => {
+                    // console.log(data)
+                    localStorage.setItem(
+                        'LogAppUser',
+                        JSON.stringify({
+                            isLogged: true,
+                            id: data.user.id,
+                            username: data.user.username,
+                            email: data.user.email,
+                            token: data.token,
+                        }),
+                    );
+                    return data;
+                })
+                .then((data) => {
+                    setUserData({
                         username: data.user.username,
                         email: data.user.email,
+                        isLogged: true,
                         token: data.token,
-                    }),
-                );
-                return data;
-            })
-            .then((data) => {
-                console.log(data);
+                    });
 
-                isLogged();
-                showMessage(`Zalogowałeś się poprawnie jako ${data.user.username}`);
-            })
-            .catch((error) => {
-                localStorage.removeItem('LogAppUser');
-                const errorsMsg = [`Wystąpiły błędy podczas logowania:`];
-                console.log(typeof error.response.data);
+                    return data;
+                })
+                .then((data) => {
+                    console.log(data);
 
-                Object.keys(error.response.data).map((v) => {
-                    return errorsMsg.push(error.response.data[v]);
-                });
-                showMessage(errorsMsg, true);
-            });
+                    isLogged();
+                    showMessage(`Zalogowałeś się poprawnie jako ${data.user.username}`);
+                })
+                .catch((error) => {
+                    setUserData({
+                        username: null,
+                        email: null,
+                        isLogged: false,
+                        token: null,
+                    });
+                    localStorage.removeItem('LogAppUser');
+                    const errorsMsg = [`Wystąpiły błędy podczas logowania:`];
+
+                    Object.keys(error.response.data).map((v) => {
+                        return errorsMsg.push(error.response.data[v][0]);
+                    });
+                    showMessage(errorsMsg, true);
+                }),
+        );
     };
 
     const handleOnPushPassword = (e) => {
@@ -94,7 +102,6 @@ const LoginPage = () => {
 
     return (
         <div className={styles.sectionLogin}>
-            {isVisibleMessage ? <Message message={messageText} alert={isMessageAlert} /> : ''}
             <form className={styles.form} action="submit">
                 <input
                     type="email"

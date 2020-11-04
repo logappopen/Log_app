@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
+
+import { trackPromise } from 'react-promise-tracker';
 import styles from './Registration.module.scss';
 
 import useStateWithLabel from '../../helpers/UseStateWhitLabel';
@@ -61,28 +63,31 @@ const RegistrationPage = () => {
     };
 
     const sendCredentials = () => {
-        return axios
-            .post(process.env.REACT_APP_API_REGISTER_URL, {
-                username,
-                email,
-                password: userPassword,
-            })
-            .then(({ data }) => {
-                console.log(data);
-                showMessage(`Zarejestrowałeś się poprawnie jako ${data.user.username}`);
-            })
-            .catch((error) => {
-                console.log(error);
-                console.log(error.response.data);
+        trackPromise(
+            axios
+                .post(process.env.REACT_APP_API_REGISTER_URL, {
+                    username,
+                    email,
+                    password: userPassword,
+                })
+                .then(({ data }) => {
+                    console.log(data);
+                    showMessage(`Zarejestrowałeś się poprawnie jako ${data.user.username}`);
+                    return data;
+                })
+                .catch((error) => {
+                    console.log(error);
+                    console.log(error.response.data);
 
-                const errorsMsg = [`Wystąpiły błędy w rejestracji:`];
-                console.log(typeof error.response.data);
+                    const errorsMsg = [`Wystąpiły błędy w rejestracji:`];
 
-                Object.keys(error.response.data).map((v) => {
-                    return errorsMsg.push(error.response.data[v]);
-                });
-                showMessage(errorsMsg, true);
-            });
+                    Object.keys(error.response.data).map((v) => {
+                        return errorsMsg.push(error.response.data[v][0]);
+                    });
+                    showMessage(errorsMsg, true);
+                    return error;
+                }),
+        );
     };
 
     const handleRegistration = (e) => {

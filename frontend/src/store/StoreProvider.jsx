@@ -1,4 +1,7 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext } from 'react';
+import useStateWithLabel from '../helpers/UseStateWhitLabel';
+
+import Message from '../components/Message/Message';
 
 const VECHICLES_DATA = [
     { name: 'BUS', dim: [420, 220, 220] },
@@ -8,8 +11,32 @@ const VECHICLES_DATA = [
 export const StoreContext = createContext(null);
 
 const StoreProvider = (props) => {
-    const [vechicleData, setVechicleData] = useState(null);
-    const [takeVechicle, setTakeVechicle] = useState(false);
+    // Vehicles
+    const [vechicleData, setVechicleData] = useStateWithLabel('vechicleData', null);
+    const [takeVechicle, setTakeVechicle] = useStateWithLabel('takeVechicle', false);
+
+    // Menu
+    const [isOpenMenu, setIsOpenMenu] = useStateWithLabel('isOpenMenu', false);
+
+    // User data
+    const [userData, setUserData] = useStateWithLabel('userData', {
+        username: null,
+        email: null,
+        isLogged: false,
+        token: null,
+    });
+
+    // Message
+    const [isVisibleMessage, setIsVisibleMessage] = useStateWithLabel('isVisibleMessage', false);
+    const [messageText, setMessageText] = useStateWithLabel('messageText', '');
+    const [isMessageAlert, setIsMessageAlert] = useStateWithLabel('isMessageAlert', false);
+
+    // Router links
+    const routerLinks = [
+        { name: 'start', path: '/', exact: true },
+        { name: 'kontakt', path: '/contact' },
+        { name: 'pomoc', path: '/help' },
+    ];
 
     const takeVechicleData = () => {
         if (takeVechicle === false) {
@@ -26,10 +53,32 @@ const StoreProvider = (props) => {
         setTakeVechicle(true);
     };
 
+    const showMessage = (text, isAlert) => {
+        setMessageText(text);
+        setIsMessageAlert(isAlert);
+        setIsVisibleMessage(true);
+
+        setTimeout(() => {
+            setIsVisibleMessage(false);
+        }, 5000);
+    };
+
     return (
         <StoreContext.Provider
-            value={{ vechicleData, takeVechicleData, takeVechicle, setTakeVechicle }}
+            value={{
+                vechicleData,
+                takeVechicleData,
+                takeVechicle,
+                setTakeVechicle,
+                userData,
+                setUserData,
+                showMessage,
+                routerLinks,
+                setIsOpenMenu,
+                isOpenMenu,
+            }}
         >
+            {isVisibleMessage ? <Message message={messageText} alert={isMessageAlert} /> : ''}
             {props.children}
         </StoreContext.Provider>
     );
