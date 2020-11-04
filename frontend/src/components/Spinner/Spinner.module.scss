@@ -1,0 +1,13 @@
+@import '../../views/Root/common.scss';
+@import '../../../node_modules/react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+
+.loader {
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+}
