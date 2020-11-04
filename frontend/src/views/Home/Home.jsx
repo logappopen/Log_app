@@ -10,8 +10,8 @@ import Footer from '../Footer/Footer';
 const Home = () => {
     return (
         <Router>
-            <div className={styles.container}>
-                <StoreProvider>
+            <StoreProvider>
+                <div className={styles.container}>
                     <div className={styles.header}>
                         <Header />
                     </div>
@@ -21,8 +21,8 @@ const Home = () => {
                     <div className={styles.footer}>
                         <Footer />
                     </div>
-                </StoreProvider>
-            </div>
+                </div>
+            </StoreProvider>
         </Router>
     );
 };

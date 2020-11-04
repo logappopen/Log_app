@@ -14,6 +14,8 @@ const StoreProvider = (props) => {
     // Vehicles
     const [vechicleData, setVechicleData] = useStateWithLabel('vechicleData', null);
     const [takeVechicle, setTakeVechicle] = useStateWithLabel('takeVechicle', false);
+
+    // Menu
     const [isOpenMenu, setIsOpenMenu] = useStateWithLabel('isOpenMenu', false);
 
     // User data
