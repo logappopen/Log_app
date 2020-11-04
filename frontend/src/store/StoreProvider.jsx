@@ -11,17 +11,30 @@ const VECHICLES_DATA = [
 export const StoreContext = createContext(null);
 
 const StoreProvider = (props) => {
+    // Vehicles
     const [vechicleData, setVechicleData] = useStateWithLabel('vechicleData', null);
     const [takeVechicle, setTakeVechicle] = useStateWithLabel('takeVechicle', false);
+    const [isOpenMenu, setIsOpenMenu] = useStateWithLabel('isOpenMenu', false);
+
+    // User data
     const [userData, setUserData] = useStateWithLabel('userData', {
         username: null,
         email: null,
         isLogged: false,
         token: null,
     });
+
+    // Message
     const [isVisibleMessage, setIsVisibleMessage] = useStateWithLabel('isVisibleMessage', false);
     const [messageText, setMessageText] = useStateWithLabel('messageText', '');
     const [isMessageAlert, setIsMessageAlert] = useStateWithLabel('isMessageAlert', false);
+
+    // Router links
+    const routerLinks = [
+        { name: 'start', path: '/', exact: true },
+        { name: 'kontakt', path: '/contact' },
+        { name: 'pomoc', path: '/help' },
+    ];
 
     const takeVechicleData = () => {
         if (takeVechicle === false) {
@@ -58,6 +71,9 @@ const StoreProvider = (props) => {
                 userData,
                 setUserData,
                 showMessage,
+                routerLinks,
+                setIsOpenMenu,
+                isOpenMenu,
             }}
         >
             {isVisibleMessage ? <Message message={messageText} alert={isMessageAlert} /> : ''}

@@ -1,17 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './Header.module.scss';
-
-const list = [
-    { name: 'start', path: '/', exact: true },
-    { name: 'kontakt', path: '/contact' },
-    { name: 'pomoc', path: '/help' },
-];
+import { StoreContext } from '../../store/StoreProvider';
 
 const Header = () => {
-    const [isOpenMenu, setIsOpenMenu] = useState(false);
+    const { routerLinks, isOpenMenu, setIsOpenMenu } = useContext(StoreContext);
 
-    const menu = list.map((item) => (
+    const menu = routerLinks.map((item) => (
         <li key={item.name}>
             <NavLink to={item.path} exact={item.exact ? item.exact : false}>
                 {item.name}
