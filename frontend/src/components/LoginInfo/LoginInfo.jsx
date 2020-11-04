@@ -29,9 +29,11 @@ const LoginInfo = () => {
                     Zaloguj się <FontAwesomeIcon icon={faSignInAlt} size="lg" />
                 </NavLink>
             ) : (
-                <NavLink to="/" className={styles.link} onClick={Logut}>
-                    Witaj {userData.username} <FontAwesomeIcon icon={faSignOutAlt} size="lg" />
-                </NavLink>
+                <div onClick={Logut} className={styles.link}>
+                    <NavLink to="/">
+                        Witaj {userData.username} <FontAwesomeIcon icon={faSignOutAlt} size="lg" />
+                    </NavLink>
+                </div>
             )}
         </div>
     );

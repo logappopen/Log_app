@@ -9,9 +9,12 @@
     @media (orientation: landscape) and (min-width: 1024px) {
         right: 20px;
     }
-
     & .link {
         text-decoration: none;
         color: $text-first-color;
+        & a {
+            text-decoration: none;
+            color: $text-first-color;
+        }
     }
 }
