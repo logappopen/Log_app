@@ -1,4 +1,5 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext } from 'react';
+import useStateWithLabel from '../helpers/UseStateWhitLabel';
 
 const VECHICLES_DATA = [
     { name: 'BUS', dim: [420, 220, 220] },
@@ -8,8 +9,8 @@ const VECHICLES_DATA = [
 export const StoreContext = createContext(null);
 
 const StoreProvider = (props) => {
-    const [vechicleData, setVechicleData] = useState(null);
-    const [takeVechicle, setTakeVechicle] = useState(false);
+    const [vechicleData, setVechicleData] = useStateWithLabel('vechicleData', null);
+    const [takeVechicle, setTakeVechicle] = useStateWithLabel('takeVechicle', false);
 
     const takeVechicleData = () => {
         if (takeVechicle === false) {
