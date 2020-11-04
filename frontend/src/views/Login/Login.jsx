@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import axios from 'axios';
 import { trackPromise } from 'react-promise-tracker';
 import styles from './Login.module.scss';
 
+import { StoreContext } from '../../store/StoreProvider';
 import useStateWithLabel from '../../helpers/UseStateWhitLabel';
 import checkEmail from '../../helpers/CheckEmail';
 import ReturnButton from '../../components/ReturnButton/ReturnButton';
@@ -16,6 +17,8 @@ const LoginPage = () => {
     const [isVisibleMessage, setIsVisibleMessage] = useStateWithLabel('isVisibleMessage', false);
     const [messageText, setMessageText] = useStateWithLabel('messageText', '');
     const [isMessageAlert, setIsMessageAlert] = useStateWithLabel('isMessageAlert', false);
+
+    const { userData, setUserData } = useContext(StoreContext);
 
     const handleOnPushEmail = (e) => {
         setIsValidEmail(checkEmail(e.target.value));
@@ -56,12 +59,28 @@ const LoginPage = () => {
                     return data;
                 })
                 .then((data) => {
+                    setUserData({
+                        username: data.user.username,
+                        email: data.user.email,
+                        isLogged: true,
+                        token: data.token,
+                    });
+
+                    return data;
+                })
+                .then((data) => {
                     console.log(data);
 
                     isLogged();
                     showMessage(`Zalogowałeś się poprawnie jako ${data.user.username}`);
                 })
                 .catch((error) => {
+                    setUserData({
+                        username: null,
+                        email: null,
+                        isLogged: false,
+                        token: null,
+                    });
                     localStorage.removeItem('LogAppUser');
                     const errorsMsg = [`Wystąpiły błędy podczas logowania:`];
 

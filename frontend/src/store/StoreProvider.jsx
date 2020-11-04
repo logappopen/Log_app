@@ -11,6 +11,12 @@ export const StoreContext = createContext(null);
 const StoreProvider = (props) => {
     const [vechicleData, setVechicleData] = useStateWithLabel('vechicleData', null);
     const [takeVechicle, setTakeVechicle] = useStateWithLabel('takeVechicle', false);
+    const [userData, setUserData] = useStateWithLabel('userData', {
+        username: null,
+        email: null,
+        isLogged: false,
+        token: null,
+    });
 
     const takeVechicleData = () => {
         if (takeVechicle === false) {
@@ -29,7 +35,14 @@ const StoreProvider = (props) => {
 
     return (
         <StoreContext.Provider
-            value={{ vechicleData, takeVechicleData, takeVechicle, setTakeVechicle }}
+            value={{
+                vechicleData,
+                takeVechicleData,
+                takeVechicle,
+                setTakeVechicle,
+                userData,
+                setUserData,
+            }}
         >
             {props.children}
         </StoreContext.Provider>
