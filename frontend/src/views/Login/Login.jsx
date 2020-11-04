@@ -8,17 +8,13 @@ import { StoreContext } from '../../store/StoreProvider';
 import useStateWithLabel from '../../helpers/UseStateWhitLabel';
 import checkEmail from '../../helpers/CheckEmail';
 import ReturnButton from '../../components/ReturnButton/ReturnButton';
-import Message from '../../components/Message/Message';
 
 const LoginPage = () => {
     const [email, setEmail] = useStateWithLabel('email', '');
     const [isValidEmail, setIsValidEmail] = useStateWithLabel('isValidemail', false);
     const [password, setPassword] = useStateWithLabel('password', '');
-    const [isVisibleMessage, setIsVisibleMessage] = useStateWithLabel('isVisibleMessage', false);
-    const [messageText, setMessageText] = useStateWithLabel('messageText', '');
-    const [isMessageAlert, setIsMessageAlert] = useStateWithLabel('isMessageAlert', false);
 
-    const { userData, setUserData } = useContext(StoreContext);
+    const { setUserData, showMessage } = useContext(StoreContext);
 
     const handleOnPushEmail = (e) => {
         setIsValidEmail(checkEmail(e.target.value));
@@ -28,15 +24,6 @@ const LoginPage = () => {
         return JSON.parse(localStorage.getItem('LogAppUser')) || false;
     };
 
-    const showMessage = (text, isAlert) => {
-        setMessageText(text);
-        setIsMessageAlert(isAlert);
-        setIsVisibleMessage(true);
-
-        setTimeout(() => {
-            setIsVisibleMessage(false);
-        }, 5000);
-    };
     const sendCredentials = () => {
         trackPromise(
             axios
@@ -115,8 +102,6 @@ const LoginPage = () => {
 
     return (
         <div className={styles.sectionLogin}>
-            {isVisibleMessage ? <Message message={messageText} alert={isMessageAlert} /> : ''}
-
             <form className={styles.form} action="submit">
                 <input
                     type="email"

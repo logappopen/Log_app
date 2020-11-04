@@ -1,6 +1,8 @@
 import React, { createContext } from 'react';
 import useStateWithLabel from '../helpers/UseStateWhitLabel';
 
+import Message from '../components/Message/Message';
+
 const VECHICLES_DATA = [
     { name: 'BUS', dim: [420, 220, 220] },
     { name: 'SOLO', dim: [1200, 250, 250] },
@@ -17,6 +19,9 @@ const StoreProvider = (props) => {
         isLogged: false,
         token: null,
     });
+    const [isVisibleMessage, setIsVisibleMessage] = useStateWithLabel('isVisibleMessage', false);
+    const [messageText, setMessageText] = useStateWithLabel('messageText', '');
+    const [isMessageAlert, setIsMessageAlert] = useStateWithLabel('isMessageAlert', false);
 
     const takeVechicleData = () => {
         if (takeVechicle === false) {
@@ -33,6 +38,16 @@ const StoreProvider = (props) => {
         setTakeVechicle(true);
     };
 
+    const showMessage = (text, isAlert) => {
+        setMessageText(text);
+        setIsMessageAlert(isAlert);
+        setIsVisibleMessage(true);
+
+        setTimeout(() => {
+            setIsVisibleMessage(false);
+        }, 5000);
+    };
+
     return (
         <StoreContext.Provider
             value={{
@@ -42,8 +57,10 @@ const StoreProvider = (props) => {
                 setTakeVechicle,
                 userData,
                 setUserData,
+                showMessage,
             }}
         >
+            {isVisibleMessage ? <Message message={messageText} alert={isMessageAlert} /> : ''}
             {props.children}
         </StoreContext.Provider>
     );
