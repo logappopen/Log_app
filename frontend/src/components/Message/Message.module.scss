@@ -1,0 +1,40 @@
+@import '../../views/Root/common.scss';
+
+.message {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 50px;
+    top: -100%;
+    left: 0;
+    text-align: center;
+    background-color: green;
+    animation: messageAnimation 5s linear;
+    animation-iteration-count: 1;
+    animation-direction: normal;
+    animation-fill-mode: both;
+    box-shadow: 0px 5px 14px 0px rgba(0, 0, 0, 0.54);
+    z-index: 999;
+}
+
+@keyframes messageAnimation {
+    0% {
+        top: -100%;
+    }
+    20% {
+        top: 0;
+    }
+    80% {
+        top: 0;
+    }
+    100% {
+        top: -100%;
+    }
+}
+
+.messageAlert {
+    background-color: red;
+}

@@ -31,8 +31,7 @@
         inset $topX $topY ($v * 6) lighten($color, 0),
         inset $topX * -1 $topY * -1 ($v * 6) darken($color, 0);
 
-    $in: $topX $topY ($v * 5) lighten($color, 0),
-        $topX * -1 $topY * -1 ($v * 3) darken($color, 0),
+    $in: $topX $topY ($v * 5) lighten($color, 0), $topX * -1 $topY * -1 ($v * 3) darken($color, 0),
         inset $topX $topY ($v * 6) lighten($color, 12),
         inset $topX/2 $topY/2 ($v) lighten($color, 12),
         inset $topX * -1 $topY * -1 ($v * 3) darken($color, 10);
@@ -84,11 +83,23 @@
 ) {
     @include neustyle($color, $hover, $direction, $inset, $distance);
     flex-basis: 90%;
-    height: 50px;
+    // height: 20px;
     line-height: 1.3em;
     background: transparent;
     margin: 0 1.5em;
     color: $text-first-color;
     padding: 12px;
     cursor: auto;
+    &::placeholder {
+        color: white;
+    }
+}
+@mixin element($color: $basic-color, $direction: topright, $inset: false, $distance: 2px) {
+    margin: 20px 0;
+    padding: 10px 20px;
+    border: none;
+    color: $text-first-color;
+    background-color: $basic-color;
+    @include neustyle($color, $direction, $inset, $distance);
+    font-size: $m-font-size;
 }

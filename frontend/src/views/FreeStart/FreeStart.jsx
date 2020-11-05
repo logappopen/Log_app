@@ -1,26 +1,32 @@
-import React from "react";
-import styles from "./FreeStart.module.scss";
+import React from 'react';
+import styles from './FreeStart.module.scss';
 
-import ReturnButton from "../../components/ReturnButton/ReturnButton";
+import VechicleDetails from './subcomponents/VechicleDetails';
+import LoadDetails from './subcomponents/LoadsDetails';
+import ReturnButton from '../../components/ReturnButton/ReturnButton';
 
 const FreeStartPage = () => {
-  return (
-    <div className={styles["freeStart"]}>
-      <h1>Free-Start</h1>
-      <p>
-        To wersja bez logowania, po wyjściu Twoja praca zostanie utracona.
-        Zaloguj się aby zapisywać swoją pracę.
-      </p>
-      <div className={styles["main"]}>
-        <div className={styles["loadDetails"]}></div>
-        <div className={styles["infoDetails"]}></div>
-        <div className={styles["vechicleDetails"]}></div>
-      </div>
-      <div className={styles["returnButton"]}>
-        <ReturnButton />
-      </div>
-    </div>
-  );
+    return (
+        <div className={styles.freeStart}>
+            <h1>Free-Start</h1>
+            <p>
+                To wersja bez logowania, po wyjściu Twoja praca zostanie utracona. Zaloguj się aby
+                zapisywać swoją pracę.
+            </p>
+            <div className={styles.main}>
+                <div className={styles.vechicleDetails}>
+                    <VechicleDetails />
+                </div>
+                <div className={styles.loadDetails}></div>
+                <div className={styles.infoDetails}>
+                    <LoadDetails />
+                </div>
+            </div>
+            <div className={styles.returnButton}>
+                <ReturnButton />
+            </div>
+        </div>
+    );
 };
 
 export default FreeStartPage;

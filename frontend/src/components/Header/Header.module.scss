@@ -1,80 +1,165 @@
-@import "../../views/Root/common.scss";
+@import '../../views/Root/common.scss';
 .header {
-  display: flex;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  padding: 10px;
-  .logo {
-    flex-basis: 50%;
-    height: 100px;
-    background-image: url(../../assets/images/pallets_640.jpg);
-    background-size: cover;
-  }
-  .title {
-    margin: 10px;
-    text-align: center;
-    font-size: $m-font-size * 1.2;
-    color: $text-first-color;
-  }
-  .info {
-    flex-basis: 40%;
-  }
-  @media (orientation: landscape) and (min-width: 1024px) {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    padding: 10px;
     .logo {
-      flex-basis: 20%;
-      align-items: center;
-      height: 200px;
-      background-image: url(../../assets/images/pallets_1920.jpg);
+        height: 200px;
+        width: 300px;
+        min-width: 70px;
+        background-image: url('../../assets/images/LogAppLogo.png');
+        background-size: contain;
+        background-repeat: no-repeat;
     }
     .title {
-      margin: 20px;
-      font-size: $x-font-size * 1.8;
+        margin: 10px;
+        text-align: center;
+        font-size: $m-font-size * 1.2;
+        color: $text-first-color;
     }
     .info {
-      flex-basis: 60%;
+        flex-basis: 40%;
     }
-  }
-}
-.info {
-  .menu {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    list-style: none;
-    li {
-      display: flex;
-      align-items: center;
-      margin-bottom: 12px;
-      margin-left: 20px;
-      width: 100px;
-      height: 30px;
-
-      a {
-        display: block;
-        width: 100%;
-        height: 100%;
-        @include button;
-        font-size: $s-font-size;
-        text-transform: uppercase;
-        text-decoration: none;
-        text-align: center;
-        line-height: $s-font-size !important;
-        cursor: pointer;
-      }
-    }
-  }
-  @media (orientation: landscape) and (min-width: 1024px) {
-    .menu {
-      flex-direction: row;
-      margin-top: 50px;
-      li {
-        width: 200px;
-        height: 50px;
-        a {
-          font-size: $x-font-size;
-          line-height: 30px !important;
+    @media (orientation: landscape) and (min-width: 1024px) {
+        .logo {
+            height: 200px;
+            width: 300px;
+            background-image: url('../../assets/images/LogAppLogo.png');
+            background-size: auto;
+            background-repeat: no-repeat;
         }
-      }
+        .title {
+            margin: 20px;
+            font-size: $x-font-size * 1.8;
+        }
+        .info {
+            flex-basis: 60%;
+        }
     }
-  }
+}
+
+.nav {
+    min-width: 100px;
+    .menu {
+        position: absolute;
+        top: 3em;
+        margin: 0.5em 0;
+        right: 1em;
+        display: none;
+        // display: flex;
+        // visibility: hidden;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+
+        padding: 0.4em;
+        z-index: 100;
+        border: 1px solid $fourth-color;
+        border-radius: 5px;
+        transition: 0.6s ease-in-out all;
+        li {
+            list-style: none;
+            text-align: left;
+            overflow: hidden;
+
+            a {
+                position: relative;
+                color: $fourth-color;
+                display: block;
+                width: 100%;
+                height: 100%;
+                font-size: $m-font-size;
+                text-transform: uppercase;
+                text-decoration: none;
+                text-align: center;
+                line-height: $x-font-size !important;
+                cursor: pointer;
+                transition: 0.3s ease-in-out all;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: -150%;
+                    height: 2px;
+                    width: 100%;
+                    background-color: $fourth-color;
+                    transition: 0.2s ease-in-out all;
+                }
+
+                &:hover::before {
+                    left: 0;
+                }
+            }
+        }
+    }
+    .hamburger {
+        display: block;
+        position: absolute;
+        width: 35px;
+        font-size: 1em;
+        right: 1.5em;
+        cursor: pointer;
+
+        & .bar1,
+        & .bar2,
+        & .bar3 {
+            width: 35px;
+            height: 5px;
+            margin: 6px 0;
+            -webkit-transition: 0.4s;
+            transition: 0.4s;
+            color: $fourth-color;
+            background-color: $fourth-color;
+        }
+
+        & .bar1Change {
+            width: 35px;
+            transform: rotate(-45deg) translate(-9px, 6px);
+        }
+
+        & .bar2Change {
+            width: 35px;
+            opacity: 0;
+        }
+
+        & .bar3Change {
+            width: 35px;
+            transform: rotate(45deg) translate(-8px, -8px);
+        }
+    }
+    .menuShow {
+        // visibility: visible;
+        display: flex;
+    }
+}
+
+@media (orientation: landscape) and (min-width: 1024px) {
+    .nav {
+        .menu {
+            display: flex;
+            flex-direction: row;
+            border: none;
+            li {
+                width: 200px;
+                margin-right: 10px;
+                overflow: visible;
+
+                a {
+                    @include button;
+                    font-size: $x-font-size;
+                    line-height: 30px !important;
+
+                    &::before {
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        .hamburger {
+            display: none;
+        }
+    }
 }

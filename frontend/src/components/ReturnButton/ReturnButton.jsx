@@ -6,7 +6,7 @@ const ReturnButton = () => {
     const history = useHistory();
     const handleOnClick = () => history.goBack();
     return (
-        <button className={styles.returnButton} onClick={handleOnClick}>
+        <button className={styles.returnButton} onClick={handleOnClick} type="button">
             wstecz
         </button>
     );

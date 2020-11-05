@@ -1,0 +1,48 @@
+{
+    "extends": ["airbnb", "prettier", "prettier/react"],
+    "env": {
+        "jest": true
+    },
+    "globals": {
+        "window": true,
+        "document": true,
+        "localStorage": true,
+        "fetch": true
+    },
+    "rules": {
+        "no-console": 0,
+        "jsx-a11y/no-noninteractive-element-interactions": [
+            0,
+            {
+                "handlers": [
+                    "onClick",
+                    "onMouseDown",
+                    "onMouseUp",
+                    "onKeyPress",
+                    "onKeyDown",
+                    "onKeyUp"
+                ]
+            }
+        ],
+        "jsx-a11y/no-static-element-interactions": [
+            0,
+            {
+                "handlers": [
+                    "onClick",
+                    "onMouseDown",
+                    "onMouseUp",
+                    "onKeyPress",
+                    "onKeyDown",
+                    "onKeyUp"
+                ]
+            }
+        ],
+        "jsx-a11y/click-events-have-key-events": [0, { "extensions": [".js", ".jsx"] }],
+        "react/jsx-filename-extension": [
+            1,
+            {
+                "extensions": [".js", ".jsx"]
+            }
+        ]
+    }
+}

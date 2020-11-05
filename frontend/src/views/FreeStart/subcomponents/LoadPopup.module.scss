@@ -1,0 +1,34 @@
+@import '../../Root/common.scss';
+
+.LoadPopup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 280px;
+    height: 520px;
+    background-color: $text-third-color;
+    @include button;
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 100%;
+        label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0 5px 0;
+        }
+        input {
+            width: 80px;
+        }
+        button {
+            @include button($first-color);
+            background-color: $first-color;
+            &:hover {
+                color: $text-first-color;
+            }
+        }
+    }
+}

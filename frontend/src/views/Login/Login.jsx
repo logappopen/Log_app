@@ -1,64 +1,137 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
-import styles from "./Login.module.scss";
+import React, { useContext } from 'react';
+import { NavLink } from 'react-router-dom';
+import axios from 'axios';
+import { trackPromise } from 'react-promise-tracker';
+import styles from './Login.module.scss';
 
-import ReturnButton from "../../components/ReturnButton/ReturnButton";
+import { StoreContext } from '../../store/StoreProvider';
+import useStateWithLabel from '../../helpers/UseStateWhitLabel';
+import checkEmail from '../../helpers/CheckEmail';
+import ReturnButton from '../../components/ReturnButton/ReturnButton';
 
 const LoginPage = () => {
-  const handleOnPushEmail = (e) => {
-    // don't remember from where i copied this code, but this works.
-    let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const [email, setEmail] = useStateWithLabel('email', '');
+    const [isValidEmail, setIsValidEmail] = useStateWithLabel('isValidemail', false);
+    const [password, setPassword] = useStateWithLabel('password', '');
 
-    if (re.test(e.target.value)) {
-      // this is a valid email address
-      console.log(e.target.value, "Email poprawny");
-    } else {
-      // invalid email, maybe show an error to the user.
-      console.log(e.target.value, "Błędny email");
-    }
-  };
+    const { setUserData, showMessage } = useContext(StoreContext);
 
-  const handleOnPushPassword = (e) => {};
+    const handleOnPushEmail = (e) => {
+        setIsValidEmail(checkEmail(e.target.value));
+        setEmail(e.target.value);
+    };
+    const isLogged = () => {
+        return JSON.parse(localStorage.getItem('LogAppUser')) || false;
+    };
 
-  const handleOnClickLogin = () => {
-    console.log("klik");
-  };
+    const sendCredentials = () => {
+        trackPromise(
+            axios
+                .post(process.env.REACT_APP_API_LOGIN_URL, {
+                    email,
+                    password,
+                })
+                .then(({ data }) => {
+                    // console.log(data)
+                    localStorage.setItem(
+                        'LogAppUser',
+                        JSON.stringify({
+                            isLogged: true,
+                            id: data.user.id,
+                            username: data.user.username,
+                            email: data.user.email,
+                            token: data.token,
+                        }),
+                    );
+                    return data;
+                })
+                .then((data) => {
+                    setUserData({
+                        username: data.user.username,
+                        email: data.user.email,
+                        isLogged: true,
+                        token: data.token,
+                    });
 
-  return (
-    <div className={styles["sectionLogin"]}>
-      <form className={styles["form"]} action="submit">
-        <label className={styles["label"]} htmlFor="login">
-          Adres email
-        </label>
-        <input
-          type="email"
-          name="login"
-          onChange={handleOnPushEmail}
-          className={styles["input"]}
-        />
-        <label className={styles["label"]} htmlFor="password">
-          Hasło
-        </label>
-        <input
-          type="password"
-          name="password"
-          onChange={handleOnPushPassword}
-          className={styles["input"]}
-        />
-        <button className={styles["button"]} onClick={handleOnClickLogin}>
-          Logowanie
-        </button>
-      </form>
-      <nav className={styles["nav"]}>
-        <ul>
-          <NavLink to="/lost_password">Zapomniałem hasła...</NavLink>
-        </ul>
-      </nav>
-      <div className={styles["returnButton"]}>
-        <ReturnButton />
-      </div>
-    </div>
-  );
+                    return data;
+                })
+                .then((data) => {
+                    console.log(data);
+
+                    isLogged();
+                    showMessage(`Zalogowałeś się poprawnie jako ${data.user.username}`);
+                })
+                .catch((error) => {
+                    setUserData({
+                        username: null,
+                        email: null,
+                        isLogged: false,
+                        token: null,
+                    });
+                    localStorage.removeItem('LogAppUser');
+                    const errorsMsg = [`Wystąpiły błędy podczas logowania:`];
+
+                    Object.keys(error.response.data).map((v) => {
+                        return errorsMsg.push(error.response.data[v][0]);
+                    });
+                    showMessage(errorsMsg, true);
+                }),
+        );
+    };
+
+    const handleOnPushPassword = (e) => {
+        setPassword(e.target.value);
+    };
+
+    const handleOnClickLogin = (e) => {
+        e.preventDefault();
+
+        const errorsMsg = [`Wypełnij poprawnie formularz:`];
+
+        if (isValidEmail) {
+            console.log('Wpisano poprawny email');
+            sendCredentials();
+        } else {
+            console.log('Wpisano błędny email');
+            errorsMsg.push(`Wpisz poprawny email`);
+        }
+
+        if (!password.length) errorsMsg.push(`Wpisz hasło.`);
+        showMessage(errorsMsg, true);
+    };
+
+    return (
+        <div className={styles.sectionLogin}>
+            <form className={styles.form} action="submit">
+                <input
+                    type="email"
+                    name="email"
+                    onChange={handleOnPushEmail}
+                    className={styles.input}
+                    placeholder="Adres email"
+                />
+
+                <input
+                    type="password"
+                    name="password"
+                    onChange={handleOnPushPassword}
+                    className={styles.input}
+                    placeholder="Hasło"
+                />
+                <button className={styles.button} onClick={handleOnClickLogin} type="submit">
+                    Logowanie
+                </button>
+            </form>
+            <nav className={styles.nav}>
+                <ul>
+                    <NavLink to="/lost_password">Zapomniałem hasła...</NavLink>
+                </ul>
+            </nav>
+            <div className={styles.returnButton}>
+                <ReturnButton />
+            </div>
+        </div>
+    );
 };
 
 export default LoginPage;
