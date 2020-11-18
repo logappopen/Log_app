@@ -6,7 +6,9 @@ import { StoreContext } from '../../store/StoreProvider';
 import LoginInfo from '../LoginInfo/LoginInfo';
 
 const Header = () => {
-    const { routerLinks, isOpenMenu, setIsOpenMenu } = useContext(StoreContext);
+    const { routerLinks, isOpenMenu, setIsOpenMenu, setUserData, userData } = useContext(
+        StoreContext,
+    );
 
     // eslint-disable-next-line no-unused-vars
     const [clickedOutsideMenu, setClickedOutsideMenu] = useStateWithLabel('clickedOutside', false);
@@ -21,6 +23,21 @@ const Header = () => {
     };
 
     useEffect(() => {
+        const isLogged = () => {
+            return JSON.parse(localStorage.getItem('LogAppUser')) || false;
+        };
+
+        if (isLogged() && !userData.isLogged) {
+            const data = JSON.parse(localStorage.getItem('LogAppUser'));
+
+            setUserData({
+                username: data.username,
+                email: data.email,
+                isLogged: data.isLogged,
+                token: data.token,
+            });
+        }
+
         document.addEventListener('mousedown', handleClickOutsideMenu);
         return () => document.removeEventListener('mousedown', handleClickOutsideMenu);
     });
