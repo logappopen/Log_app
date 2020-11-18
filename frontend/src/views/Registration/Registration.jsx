@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 import { trackPromise } from 'react-promise-tracker';
@@ -98,7 +98,13 @@ const RegistrationPage = () => {
             showMessage(checkFrom()[1], true);
         }
     };
+    const isLogged = () => {
+        return JSON.parse(localStorage.getItem('LogAppUser')) || false;
+    };
 
+    if (isLogged()) {
+        return <Redirect to="/" />;
+    }
     return (
         <div className={styles.wrapper}>
             <h1>Zarejestruj się</h1>
