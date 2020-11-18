@@ -5,7 +5,7 @@ import { trackPromise } from 'react-promise-tracker';
 import styles from './Login.module.scss';
 
 import { StoreContext } from '../../store/StoreProvider';
-import { useStateWithLabel, checkEmail } from '../../helpers/helpers';
+import { useStateWithLabel, checkEmail, isLogged } from '../../helpers/helpers';
 import ReturnButton from '../../components/ReturnButton/ReturnButton';
 
 const LoginPage = () => {
@@ -18,9 +18,6 @@ const LoginPage = () => {
     const handleOnPushEmail = (e) => {
         setIsValidEmail(checkEmail(e.target.value));
         setEmail(e.target.value);
-    };
-    const isLogged = () => {
-        return JSON.parse(localStorage.getItem('LogAppUser')) || false;
     };
 
     const sendCredentials = () => {

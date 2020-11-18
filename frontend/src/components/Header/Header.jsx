@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './Header.module.scss';
-import { useStateWithLabel } from '../../helpers/helpers';
+import { useStateWithLabel, isLogged } from '../../helpers/helpers';
 import { StoreContext } from '../../store/StoreProvider';
 import LoginInfo from '../LoginInfo/LoginInfo';
 
@@ -23,10 +23,6 @@ const Header = () => {
     };
 
     useEffect(() => {
-        const isLogged = () => {
-            return JSON.parse(localStorage.getItem('LogAppUser')) || false;
-        };
-
         if (isLogged() && !userData.isLogged) {
             const data = JSON.parse(localStorage.getItem('LogAppUser'));
 

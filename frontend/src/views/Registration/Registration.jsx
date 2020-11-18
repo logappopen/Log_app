@@ -5,7 +5,7 @@ import axios from 'axios';
 import { trackPromise } from 'react-promise-tracker';
 import styles from './Registration.module.scss';
 
-import { checkEmail, useStateWithLabel } from '../../helpers/helpers';
+import { checkEmail, useStateWithLabel, isLogged } from '../../helpers/helpers';
 import ReturnButton from '../../components/ReturnButton/ReturnButton';
 import Message from '../../components/Message/Message';
 
@@ -96,9 +96,6 @@ const RegistrationPage = () => {
         } else {
             showMessage(checkFrom()[1], true);
         }
-    };
-    const isLogged = () => {
-        return JSON.parse(localStorage.getItem('LogAppUser')) || false;
     };
 
     if (isLogged()) {

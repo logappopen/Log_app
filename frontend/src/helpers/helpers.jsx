@@ -13,3 +13,7 @@ export const checkEmail = (email = false) => {
 
     return re.test(email);
 };
+
+export const isLogged = () => {
+    return JSON.parse(localStorage.getItem('LogAppUser')) || false;
+};

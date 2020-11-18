@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './Start.module.scss';
+import { isLogged } from '../../helpers/helpers';
 
 const list = [
     { name: 'logowanie', path: '/login', exact: true },
@@ -9,9 +10,6 @@ const list = [
 ];
 
 const StartPage = () => {
-    const isLogged = () => {
-        return JSON.parse(localStorage.getItem('LogAppUser')) || false;
-    };
     const menu = list.map((item) => {
         if ((item.name === 'logowanie' || item.name === 'rejestracja') && isLogged()) {
             return null;
