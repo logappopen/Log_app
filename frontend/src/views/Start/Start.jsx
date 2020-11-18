@@ -9,13 +9,21 @@ const list = [
 ];
 
 const StartPage = () => {
-    const menu = list.map((item) => (
-        <li key={item.name}>
-            <NavLink to={item.path} exact={item.exact ? item.exact : false}>
-                {item.name}
-            </NavLink>
-        </li>
-    ));
+    const isLogged = () => {
+        return JSON.parse(localStorage.getItem('LogAppUser')) || false;
+    };
+    const menu = list.map((item) => {
+        if ((item.name === 'logowanie' || item.name === 'rejestracja') && isLogged()) {
+            return null;
+        }
+        return (
+            <li key={item.name}>
+                <NavLink to={item.path} exact={item.exact ? item.exact : false}>
+                    {item.name}
+                </NavLink>
+            </li>
+        );
+    });
 
     return (
         <>
