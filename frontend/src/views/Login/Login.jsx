@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import axios from 'axios';
 import { trackPromise } from 'react-promise-tracker';
 import styles from './Login.module.scss';
@@ -100,6 +100,9 @@ const LoginPage = () => {
         showMessage(errorsMsg, true);
     };
 
+    if (isLogged()) {
+        return <Redirect to="/" />;
+    }
     return (
         <div className={styles.sectionLogin}>
             <form className={styles.form} action="submit">
