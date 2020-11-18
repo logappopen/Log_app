@@ -1,12 +1,11 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 import { trackPromise } from 'react-promise-tracker';
 import styles from './Registration.module.scss';
 
-import useStateWithLabel from '../../helpers/UseStateWhitLabel';
-import checkEmail from '../../helpers/CheckEmail';
+import { checkEmail, useStateWithLabel, isLogged } from '../../helpers/helpers';
 import ReturnButton from '../../components/ReturnButton/ReturnButton';
 import Message from '../../components/Message/Message';
 
@@ -99,6 +98,9 @@ const RegistrationPage = () => {
         }
     };
 
+    if (isLogged()) {
+        return <Redirect to="/" />;
+    }
     return (
         <div className={styles.wrapper}>
             <h1>Zarejestruj się</h1>

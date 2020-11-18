@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './Start.module.scss';
+import { isLogged } from '../../helpers/helpers';
 
 const list = [
     { name: 'logowanie', path: '/login', exact: true },
@@ -9,13 +10,18 @@ const list = [
 ];
 
 const StartPage = () => {
-    const menu = list.map((item) => (
-        <li key={item.name}>
-            <NavLink to={item.path} exact={item.exact ? item.exact : false}>
-                {item.name}
-            </NavLink>
-        </li>
-    ));
+    const menu = list.map((item) => {
+        if ((item.name === 'logowanie' || item.name === 'rejestracja') && isLogged()) {
+            return null;
+        }
+        return (
+            <li key={item.name}>
+                <NavLink to={item.path} exact={item.exact ? item.exact : false}>
+                    {item.name}
+                </NavLink>
+            </li>
+        );
+    });
 
     return (
         <>
