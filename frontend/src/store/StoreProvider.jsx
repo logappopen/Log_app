@@ -1,5 +1,5 @@
 import React, { createContext } from 'react';
-import useStateWithLabel from '../helpers/UseStateWhitLabel';
+import { useStateWithLabel } from '../helpers/helpers';
 
 import Message from '../components/Message/Message';
 
@@ -9,7 +9,7 @@ const VECHICLES_DATA = [
     { name: 'NACZEPA', dim: [1360, 250, 275] },
 ];
 
-const LOADS_DATA = [];
+// const LOADS_DATA = [];
 export const StoreContext = createContext(null);
 
 const StoreProvider = (props) => {

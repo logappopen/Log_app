@@ -5,8 +5,7 @@ import { trackPromise } from 'react-promise-tracker';
 import styles from './Login.module.scss';
 
 import { StoreContext } from '../../store/StoreProvider';
-import useStateWithLabel from '../../helpers/UseStateWhitLabel';
-import checkEmail from '../../helpers/CheckEmail';
+import { useStateWithLabel, checkEmail } from '../../helpers/helpers';
 import ReturnButton from '../../components/ReturnButton/ReturnButton';
 
 const LoginPage = () => {

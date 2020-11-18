@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useRef } from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './Header.module.scss';
-import useStateWithLabel from '../../helpers/UseStateWhitLabel';
+import { useStateWithLabel } from '../../helpers/helpers';
 import { StoreContext } from '../../store/StoreProvider';
 import LoginInfo from '../LoginInfo/LoginInfo';
 

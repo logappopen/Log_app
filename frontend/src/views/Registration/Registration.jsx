@@ -5,8 +5,7 @@ import axios from 'axios';
 import { trackPromise } from 'react-promise-tracker';
 import styles from './Registration.module.scss';
 
-import useStateWithLabel from '../../helpers/UseStateWhitLabel';
-import checkEmail from '../../helpers/CheckEmail';
+import { checkEmail, useStateWithLabel } from '../../helpers/helpers';
 import ReturnButton from '../../components/ReturnButton/ReturnButton';
 import Message from '../../components/Message/Message';
 
